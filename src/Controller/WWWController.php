@@ -19,7 +19,7 @@ class WWWController extends AbstractController
      */
 
     public function index(){
-        $parametros = array('title' => 'Tienda Figther');
+        $parametros = array('title' => 'Tienda Figther', 'error' => null);
         return $this-> render('index.html.twig', $parametros);
     }
 
@@ -43,6 +43,27 @@ class WWWController extends AbstractController
      */
 
     public function config(){
+        $parametros = array('user' =>null);
+
+        //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+ //           if ($_POST['id'] != ""){
+
+                $entity_manager = $this->getDoctrine()->getManager();
+
+                $user_query = $entity_manager->getRepository(FosUser::class)->find(1);
+
+                $parametros = array('user' => array('username' => $user_query->getUsername(), 'email' => $user_query->getEmail(), 'password'=>$user_query->getPassword()));
+
+                return $this->render('Tienda/Usuario/usuario.html.twig', $parametros);
+
+   //         }
+        //}else{
+
+          //  $parametros = array('error' => "METODO NO VALIDO");
+
+        //}
+        //return $this->render('Tienda/index.html.twig', $parametros);
 
     }
     /**
@@ -51,7 +72,7 @@ class WWWController extends AbstractController
 
     public function login(){
 
-        $parametros = array();
+        $parametros = array('error' => null);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 

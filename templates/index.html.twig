@@ -3,7 +3,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 {% endblock %}
 {% block contenido %}
-
+    {% if error %}
+        <h3>Error: {{ error }}</h3>
+    {% endif %}
     <form method="post" action="{{ path('login')}}">
         <label>Username</label><input type="text" placeholder="Username" name="username">
         <label>Password</label><input type="password" placeholder="Password" name="password">
