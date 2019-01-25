@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block sstylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+{% endblock %}
+{% block %}
+{% block title %}{% endblock %}
+{% block menu %}
+    {% include 'libros/Menu/_menu.html.twig' %}
+{% endblock %}
+{% block contenido %}{% endblock %}
+{% block footer %}
+    <footer> curso DAM2 pie symfony</footer>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+{% endblock %}
