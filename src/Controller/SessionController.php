@@ -22,7 +22,7 @@ class SessionController extends AbstractController
 {
 
     /**
-     * @Route("/ws/login", name="login", methods={"POST"})
+     * @Route("/ws/login", name="wslogin", methods={"POST"})
      */
     public function login(){
 

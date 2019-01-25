@@ -2,13 +2,11 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 {% endblock %}
+{% block menu %}
+    {% include 'Tienda/Menu/_menu.html.twig' %}
+{% endblock %}
 {% block contenido %}
-
-    <form method="post" action="{{ path('login')}}">
-        <label>Username</label><input type="text" placeholder="Username" name="username">
-        <label>Password</label><input type="password" placeholder="Password" name="password">
-        <input type="submit" name="submit" value="Log in">
-    </form>
+    <h1>HOLAAAA</h1>
 {% endblock %}
 {% block footer %}
     <footer>Tienda Figther</footer>
