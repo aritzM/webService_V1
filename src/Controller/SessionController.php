@@ -20,21 +20,11 @@ use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 
 class SessionController extends AbstractController
 {
-    /**
-     * @Route("/ws/session", name="session")
-     */
-    public function index()
-    {
-        return $this->render('session/index.html.twig', [
-            'controller_name' => 'SessionController',
-        ]);
-    }
+
     /**
      * @Route("/ws/login", name="login", methods={"POST"})
      */
     public function login(){
-
-
 
         $datos = file_get_contents('php://input');
         $request = json_decode($datos);
