@@ -27,20 +27,20 @@ class MailActivityRel
      *
      * @ORM\ManyToOne(targetEntity="MailActivityType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="activity_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="recommended_id", referencedColumnName="id")
      * })
      */
-    private $activity;
+    private $recommended;
 
     /**
      * @var \MailActivityType
      *
      * @ORM\ManyToOne(targetEntity="MailActivityType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="recommended_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="activity_id", referencedColumnName="id")
      * })
      */
-    private $recommended;
+    private $activity;
 
 
 }

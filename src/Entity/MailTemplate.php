@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MailTemplate
  *
- * @ORM\Table(name="mail_template", indexes={@ORM\Index(name="mail_template_model_index", columns={"model"}), @ORM\Index(name="IDX_4AB7DECB7975B7E7", columns={"model_id"}), @ORM\Index(name="IDX_4AB7DECB609EF8D4", columns={"mail_server_id"}), @ORM\Index(name="IDX_4AB7DECB970086FE", columns={"report_template"}), @ORM\Index(name="IDX_4AB7DECB1D1F7BB8", columns={"ref_ir_act_window"}), @ORM\Index(name="IDX_4AB7DECB7604BDD0", columns={"model_object_field"}), @ORM\Index(name="IDX_4AB7DECB1AFCE4A0", columns={"sub_object"}), @ORM\Index(name="IDX_4AB7DECB3699AFE5", columns={"sub_model_object_field"}), @ORM\Index(name="IDX_4AB7DECB4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_4AB7DECB7C455263", columns={"write_uid"})})
+ * @ORM\Table(name="mail_template", indexes={@ORM\Index(name="mail_template_model_index", columns={"model"}), @ORM\Index(name="IDX_4AB7DECB7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_4AB7DECB4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_4AB7DECB3699AFE5", columns={"sub_model_object_field"}), @ORM\Index(name="IDX_4AB7DECB1AFCE4A0", columns={"sub_object"}), @ORM\Index(name="IDX_4AB7DECB7604BDD0", columns={"model_object_field"}), @ORM\Index(name="IDX_4AB7DECB1D1F7BB8", columns={"ref_ir_act_window"}), @ORM\Index(name="IDX_4AB7DECB970086FE", columns={"report_template"}), @ORM\Index(name="IDX_4AB7DECB609EF8D4", columns={"mail_server_id"}), @ORM\Index(name="IDX_4AB7DECB7975B7E7", columns={"model_id"})})
  * @ORM\Entity
  */
 class MailTemplate
@@ -156,54 +156,34 @@ class MailTemplate
     private $writeDate;
 
     /**
-     * @var \IrModel
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrModel")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $model2;
+    private $writeUid;
 
     /**
-     * @var \IrMailServer
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrMailServer")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="mail_server_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $mailServer;
-
-    /**
-     * @var \IrActReportXml
-     *
-     * @ORM\ManyToOne(targetEntity="IrActReportXml")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="report_template", referencedColumnName="id")
-     * })
-     */
-    private $reportTemplate;
-
-    /**
-     * @var \IrActWindow
-     *
-     * @ORM\ManyToOne(targetEntity="IrActWindow")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ref_ir_act_window", referencedColumnName="id")
-     * })
-     */
-    private $refIrActWindow;
+    private $createUid;
 
     /**
      * @var \IrModelFields
      *
      * @ORM\ManyToOne(targetEntity="IrModelFields")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="model_object_field", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="sub_model_object_field", referencedColumnName="id")
      * })
      */
-    private $modelObjectField;
+    private $subModelObjectField;
 
     /**
      * @var \IrModel
@@ -220,30 +200,50 @@ class MailTemplate
      *
      * @ORM\ManyToOne(targetEntity="IrModelFields")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sub_model_object_field", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="model_object_field", referencedColumnName="id")
      * })
      */
-    private $subModelObjectField;
+    private $modelObjectField;
 
     /**
-     * @var \ResUsers
+     * @var \IrActWindow
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrActWindow")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="ref_ir_act_window", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $refIrActWindow;
 
     /**
-     * @var \ResUsers
+     * @var \IrActReportXml
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrActReportXml")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="report_template", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $reportTemplate;
+
+    /**
+     * @var \IrMailServer
+     *
+     * @ORM\ManyToOne(targetEntity="IrMailServer")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="mail_server_id", referencedColumnName="id")
+     * })
+     */
+    private $mailServer;
+
+    /**
+     * @var \IrModel
+     *
+     * @ORM\ManyToOne(targetEntity="IrModel")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     * })
+     */
+    private $model2;
 
 
 }

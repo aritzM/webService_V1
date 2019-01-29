@@ -23,16 +23,6 @@ class EmailTemplatePreviewResPartnerRel
     private $id;
 
     /**
-     * @var \EmailTemplatePreview
-     *
-     * @ORM\ManyToOne(targetEntity="EmailTemplatePreview")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="email_template_preview_id", referencedColumnName="id")
-     * })
-     */
-    private $emailTemplatePreview;
-
-    /**
      * @var \ResPartner
      *
      * @ORM\ManyToOne(targetEntity="ResPartner")
@@ -41,6 +31,16 @@ class EmailTemplatePreviewResPartnerRel
      * })
      */
     private $resPartner;
+
+    /**
+     * @var \EmailTemplatePreview
+     *
+     * @ORM\ManyToOne(targetEntity="EmailTemplatePreview")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="email_template_preview_id", referencedColumnName="id")
+     * })
+     */
+    private $emailTemplatePreview;
 
 
 }

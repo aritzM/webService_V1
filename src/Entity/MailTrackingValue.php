@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MailTrackingValue
  *
- * @ORM\Table(name="mail_tracking_value", indexes={@ORM\Index(name="mail_tracking_value_mail_message_id_index", columns={"mail_message_id"}), @ORM\Index(name="IDX_FF872FB04C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_FF872FB07C455263", columns={"write_uid"})})
+ * @ORM\Table(name="mail_tracking_value", indexes={@ORM\Index(name="mail_tracking_value_mail_message_id_index", columns={"mail_message_id"}), @ORM\Index(name="IDX_FF872FB07C455263", columns={"write_uid"}), @ORM\Index(name="IDX_FF872FB04C10A2D2", columns={"create_uid"})})
  * @ORM\Entity
  */
 class MailTrackingValue
@@ -142,14 +142,14 @@ class MailTrackingValue
     private $writeDate;
 
     /**
-     * @var \MailMessage
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="MailMessage")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="mail_message_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $mailMessage;
+    private $writeUid;
 
     /**
      * @var \ResUsers
@@ -162,14 +162,14 @@ class MailTrackingValue
     private $createUid;
 
     /**
-     * @var \ResUsers
+     * @var \MailMessage
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="MailMessage")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="mail_message_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $mailMessage;
 
 
 }

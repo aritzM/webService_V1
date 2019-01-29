@@ -23,16 +23,6 @@ class ResPartnerResPartnerCategoryRel
     private $id;
 
     /**
-     * @var \ResPartnerCategory
-     *
-     * @ORM\ManyToOne(targetEntity="ResPartnerCategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     * })
-     */
-    private $category;
-
-    /**
      * @var \ResPartner
      *
      * @ORM\ManyToOne(targetEntity="ResPartner")
@@ -41,6 +31,16 @@ class ResPartnerResPartnerCategoryRel
      * })
      */
     private $partner;
+
+    /**
+     * @var \ResPartnerCategory
+     *
+     * @ORM\ManyToOne(targetEntity="ResPartnerCategory")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * })
+     */
+    private $category;
 
 
 }

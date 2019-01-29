@@ -44,16 +44,6 @@ class ResourceTest
     private $writeDate;
 
     /**
-     * @var \ResourceResource
-     *
-     * @ORM\ManyToOne(targetEntity="ResourceResource")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
-     * })
-     */
-    private $resource;
-
-    /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
@@ -82,6 +72,16 @@ class ResourceTest
      * })
      */
     private $company;
+
+    /**
+     * @var \ResourceResource
+     *
+     * @ORM\ManyToOne(targetEntity="ResourceResource")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
+     * })
+     */
+    private $resource;
 
 
 }

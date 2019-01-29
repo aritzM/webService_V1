@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ChangePasswordUser
  *
- * @ORM\Table(name="change_password_user", indexes={@ORM\Index(name="IDX_32116BB98899D61", columns={"wizard_id"}), @ORM\Index(name="IDX_32116BBA76ED395", columns={"user_id"}), @ORM\Index(name="IDX_32116BB4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_32116BB7C455263", columns={"write_uid"})})
+ * @ORM\Table(name="change_password_user", indexes={@ORM\Index(name="IDX_32116BB7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_32116BB4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_32116BBA76ED395", columns={"user_id"}), @ORM\Index(name="IDX_32116BB98899D61", columns={"wizard_id"})})
  * @ORM\Entity
  */
 class ChangePasswordUser
@@ -51,24 +51,14 @@ class ChangePasswordUser
     private $writeDate;
 
     /**
-     * @var \ChangePasswordWizard
-     *
-     * @ORM\ManyToOne(targetEntity="ChangePasswordWizard")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="wizard_id", referencedColumnName="id")
-     * })
-     */
-    private $wizard;
-
-    /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $user;
+    private $writeUid;
 
     /**
      * @var \ResUsers
@@ -85,10 +75,20 @@ class ChangePasswordUser
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $user;
+
+    /**
+     * @var \ChangePasswordWizard
+     *
+     * @ORM\ManyToOne(targetEntity="ChangePasswordWizard")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="wizard_id", referencedColumnName="id")
+     * })
+     */
+    private $wizard;
 
 
 }

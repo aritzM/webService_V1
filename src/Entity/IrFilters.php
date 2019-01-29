@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrFilters
  *
- * @ORM\Table(name="ir_filters", uniqueConstraints={@ORM\UniqueConstraint(name="ir_filters_name_model_uid_unique_action_index", columns={"model_id"}), @ORM\UniqueConstraint(name="ir_filters_name_model_uid_unique", columns={"name", "model_id", "user_id", "action_id"})}, indexes={@ORM\Index(name="IDX_7930F506A76ED395", columns={"user_id"}), @ORM\Index(name="IDX_7930F5064C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_7930F5067C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_filters", uniqueConstraints={@ORM\UniqueConstraint(name="ir_filters_name_model_uid_unique_action_index", columns={"model_id"}), @ORM\UniqueConstraint(name="ir_filters_name_model_uid_unique", columns={"name", "model_id", "user_id", "action_id"})}, indexes={@ORM\Index(name="IDX_7930F5067C455263", columns={"write_uid"}), @ORM\Index(name="IDX_7930F5064C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_7930F506A76ED395", columns={"user_id"})})
  * @ORM\Entity
  */
 class IrFilters
@@ -97,10 +97,10 @@ class IrFilters
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $user;
+    private $writeUid;
 
     /**
      * @var \ResUsers
@@ -117,10 +117,10 @@ class IrFilters
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $user;
 
 
 }

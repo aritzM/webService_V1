@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrUiView
  *
- * @ORM\Table(name="ir_ui_view", indexes={@ORM\Index(name="ir_ui_view_model_index", columns={"model"}), @ORM\Index(name="ir_ui_view_inherit_id_index", columns={"inherit_id"}), @ORM\Index(name="ir_ui_view_model_type_inherit_id", columns={"model", "inherit_id"}), @ORM\Index(name="IDX_687AC0637C455263", columns={"write_uid"}), @ORM\Index(name="IDX_687AC0634C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="ir_ui_view", indexes={@ORM\Index(name="ir_ui_view_model_index", columns={"model"}), @ORM\Index(name="ir_ui_view_inherit_id_index", columns={"inherit_id"}), @ORM\Index(name="ir_ui_view_model_type_inherit_id", columns={"model", "inherit_id"}), @ORM\Index(name="IDX_687AC06318F45C82", columns={"website_id"}), @ORM\Index(name="IDX_687AC0637C455263", columns={"write_uid"}), @ORM\Index(name="IDX_687AC0634C10A2D2", columns={"create_uid"})})
  * @ORM\Entity
  */
 class IrUiView
@@ -107,14 +107,42 @@ class IrUiView
     private $active;
 
     /**
-     * @var \IrUiView
+     * @var string|null
      *
-     * @ORM\ManyToOne(targetEntity="IrUiView")
+     * @ORM\Column(name="website_meta_title", type="string", nullable=true, options={"comment"="Website meta title"})
+     */
+    private $websiteMetaTitle;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="website_meta_description", type="text", nullable=true, options={"comment"="Website meta description"})
+     */
+    private $websiteMetaDescription;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="website_meta_keywords", type="string", nullable=true, options={"comment"="Website meta keywords"})
+     */
+    private $websiteMetaKeywords;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="customize_show", type="boolean", nullable=true, options={"comment"="Show As Optional Inherit"})
+     */
+    private $customizeShow;
+
+    /**
+     * @var \Website
+     *
+     * @ORM\ManyToOne(targetEntity="Website")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="inherit_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="website_id", referencedColumnName="id")
      * })
      */
-    private $inherit;
+    private $website;
 
     /**
      * @var \ResUsers
@@ -135,6 +163,16 @@ class IrUiView
      * })
      */
     private $createUid;
+
+    /**
+     * @var \IrUiView
+     *
+     * @ORM\ManyToOne(targetEntity="IrUiView")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="inherit_id", referencedColumnName="id")
+     * })
+     */
+    private $inherit;
 
 
 }

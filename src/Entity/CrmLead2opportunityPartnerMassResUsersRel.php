@@ -23,16 +23,6 @@ class CrmLead2opportunityPartnerMassResUsersRel
     private $id;
 
     /**
-     * @var \CrmLead2opportunityPartnerMass
-     *
-     * @ORM\ManyToOne(targetEntity="CrmLead2opportunityPartnerMass")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="crm_lead2opportunity_partner_mass_id", referencedColumnName="id")
-     * })
-     */
-    private $crmLead2opportunityPartnerMass;
-
-    /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
@@ -41,6 +31,16 @@ class CrmLead2opportunityPartnerMassResUsersRel
      * })
      */
     private $resUsers;
+
+    /**
+     * @var \CrmLead2opportunityPartnerMass
+     *
+     * @ORM\ManyToOne(targetEntity="CrmLead2opportunityPartnerMass")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="crm_lead2opportunity_partner_mass_id", referencedColumnName="id")
+     * })
+     */
+    private $crmLead2opportunityPartnerMass;
 
 
 }

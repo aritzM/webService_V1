@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MailMail
  *
- * @ORM\Table(name="mail_mail", indexes={@ORM\Index(name="mail_mail_fetchmail_server_id_index", columns={"fetchmail_server_id"}), @ORM\Index(name="mail_mail_mail_message_id_index", columns={"mail_message_id"}), @ORM\Index(name="IDX_FC5D3F214C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_FC5D3F217C455263", columns={"write_uid"})})
+ * @ORM\Table(name="mail_mail", indexes={@ORM\Index(name="mail_mail_fetchmail_server_id_index", columns={"fetchmail_server_id"}), @ORM\Index(name="mail_mail_mail_message_id_index", columns={"mail_message_id"}), @ORM\Index(name="IDX_FC5D3F217C455263", columns={"write_uid"}), @ORM\Index(name="IDX_FC5D3F214C10A2D2", columns={"create_uid"})})
  * @ORM\Entity
  */
 class MailMail
@@ -107,24 +107,14 @@ class MailMail
     private $writeDate;
 
     /**
-     * @var \MailMessage
+     * @var \FetchmailServer
      *
-     * @ORM\ManyToOne(targetEntity="MailMessage")
+     * @ORM\ManyToOne(targetEntity="FetchmailServer")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="mail_message_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="fetchmail_server_id", referencedColumnName="id")
      * })
      */
-    private $mailMessage;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $fetchmailServer;
 
     /**
      * @var \ResUsers
@@ -137,14 +127,24 @@ class MailMail
     private $writeUid;
 
     /**
-     * @var \FetchmailServer
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="FetchmailServer")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fetchmail_server_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $fetchmailServer;
+    private $createUid;
+
+    /**
+     * @var \MailMessage
+     *
+     * @ORM\ManyToOne(targetEntity="MailMessage")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="mail_message_id", referencedColumnName="id")
+     * })
+     */
+    private $mailMessage;
 
 
 }

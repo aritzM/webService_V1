@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrCron
  *
- * @ORM\Table(name="ir_cron", indexes={@ORM\Index(name="IDX_4962FD7CC555687E", columns={"ir_actions_server_id"}), @ORM\Index(name="IDX_4962FD7C7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_4962FD7C4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_4962FD7CA76ED395", columns={"user_id"})})
+ * @ORM\Table(name="ir_cron", indexes={@ORM\Index(name="IDX_4962FD7C7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_4962FD7C4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_4962FD7CA76ED395", columns={"user_id"}), @ORM\Index(name="IDX_4962FD7CC555687E", columns={"ir_actions_server_id"})})
  * @ORM\Entity
  */
 class IrCron
@@ -93,16 +93,6 @@ class IrCron
     private $writeDate;
 
     /**
-     * @var \IrActServer
-     *
-     * @ORM\ManyToOne(targetEntity="IrActServer")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ir_actions_server_id", referencedColumnName="id")
-     * })
-     */
-    private $irActionsServer;
-
-    /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
@@ -131,6 +121,16 @@ class IrCron
      * })
      */
     private $user;
+
+    /**
+     * @var \IrActServer
+     *
+     * @ORM\ManyToOne(targetEntity="IrActServer")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ir_actions_server_id", referencedColumnName="id")
+     * })
+     */
+    private $irActionsServer;
 
 
 }

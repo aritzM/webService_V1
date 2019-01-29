@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrActWindow
  *
- * @ORM\Table(name="ir_act_window", indexes={@ORM\Index(name="IDX_394F2CD831518C7", columns={"view_id"}), @ORM\Index(name="IDX_394F2CD88EC4F75D", columns={"search_view_id"}), @ORM\Index(name="IDX_394F2CD8DAC4C9DB", columns={"binding_model_id"}), @ORM\Index(name="IDX_394F2CD84C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_394F2CD87C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_act_window", indexes={@ORM\Index(name="IDX_394F2CD87C455263", columns={"write_uid"}), @ORM\Index(name="IDX_394F2CD84C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_394F2CD8DAC4C9DB", columns={"binding_model_id"}), @ORM\Index(name="IDX_394F2CD88EC4F75D", columns={"search_view_id"}), @ORM\Index(name="IDX_394F2CD831518C7", columns={"view_id"})})
  * @ORM\Entity
  */
 class IrActWindow
@@ -156,34 +156,14 @@ class IrActWindow
     private $multi;
 
     /**
-     * @var \IrUiView
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrUiView")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="view_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $view;
-
-    /**
-     * @var \IrUiView
-     *
-     * @ORM\ManyToOne(targetEntity="IrUiView")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="search_view_id", referencedColumnName="id")
-     * })
-     */
-    private $searchView;
-
-    /**
-     * @var \IrModel
-     *
-     * @ORM\ManyToOne(targetEntity="IrModel")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="binding_model_id", referencedColumnName="id")
-     * })
-     */
-    private $bindingModel;
+    private $writeUid;
 
     /**
      * @var \ResUsers
@@ -196,14 +176,34 @@ class IrActWindow
     private $createUid;
 
     /**
-     * @var \ResUsers
+     * @var \IrModel
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrModel")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="binding_model_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $bindingModel;
+
+    /**
+     * @var \IrUiView
+     *
+     * @ORM\ManyToOne(targetEntity="IrUiView")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="search_view_id", referencedColumnName="id")
+     * })
+     */
+    private $searchView;
+
+    /**
+     * @var \IrUiView
+     *
+     * @ORM\ManyToOne(targetEntity="IrUiView")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="view_id", referencedColumnName="id")
+     * })
+     */
+    private $view;
 
 
 }

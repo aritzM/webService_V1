@@ -37,16 +37,6 @@ class MailFollowers
     private $resId;
 
     /**
-     * @var \ResPartner
-     *
-     * @ORM\ManyToOne(targetEntity="ResPartner")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
-     * })
-     */
-    private $partner;
-
-    /**
      * @var \MailChannel
      *
      * @ORM\ManyToOne(targetEntity="MailChannel")
@@ -55,6 +45,16 @@ class MailFollowers
      * })
      */
     private $channel;
+
+    /**
+     * @var \ResPartner
+     *
+     * @ORM\ManyToOne(targetEntity="ResPartner")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
+     * })
+     */
+    private $partner;
 
 
 }

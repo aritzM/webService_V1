@@ -100,6 +100,20 @@ class IrActServer
     private $code;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="website_path", type="string", nullable=true, options={"comment"="Website Path"})
+     */
+    private $websitePath;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="website_published", type="boolean", nullable=true, options={"comment"="Available on the Website"})
+     */
+    private $websitePublished;
+
+    /**
      * @var \MailTemplate
      *
      * @ORM\ManyToOne(targetEntity="MailTemplate")

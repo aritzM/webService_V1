@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * AlmiSkinsJuego
  *
- * @ORM\Table(name="almi_skins_juego", indexes={@ORM\Index(name="IDX_ED07D84A4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_ED07D84A7C455263", columns={"write_uid"})})
+ * @ORM\Table(name="almi_skins_juego", indexes={@ORM\Index(name="IDX_ED07D84A7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_ED07D84A4C10A2D2", columns={"create_uid"})})
  * @ORM\Entity
  */
 class AlmiSkinsJuego
@@ -58,14 +58,11 @@ class AlmiSkinsJuego
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var string|null
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="imagen", type="blob", nullable=true, options={"comment"="imagen"})
      */
-    private $createUid;
+    private $imagen;
 
     /**
      * @var \ResUsers
@@ -76,6 +73,16 @@ class AlmiSkinsJuego
      * })
      */
     private $writeUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     * })
+     */
+    private $createUid;
 
 
 }

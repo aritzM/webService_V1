@@ -23,16 +23,6 @@ class MailMessageResPartnerRel
     private $id;
 
     /**
-     * @var \MailMessage
-     *
-     * @ORM\ManyToOne(targetEntity="MailMessage")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="mail_message_id", referencedColumnName="id")
-     * })
-     */
-    private $mailMessage;
-
-    /**
      * @var \ResPartner
      *
      * @ORM\ManyToOne(targetEntity="ResPartner")
@@ -41,6 +31,16 @@ class MailMessageResPartnerRel
      * })
      */
     private $resPartner;
+
+    /**
+     * @var \MailMessage
+     *
+     * @ORM\ManyToOne(targetEntity="MailMessage")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="mail_message_id", referencedColumnName="id")
+     * })
+     */
+    private $mailMessage;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResConfigSettings
  *
- * @ORM\Table(name="res_config_settings", indexes={@ORM\Index(name="IDX_2B80B04A7871026A", columns={"auth_signup_template_user_id"}), @ORM\Index(name="IDX_2B80B04A979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_2B80B04A7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_2B80B04A4C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="res_config_settings", indexes={@ORM\Index(name="IDX_2B80B04A18F45C82", columns={"website_id"}), @ORM\Index(name="IDX_2B80B04A9F96B27", columns={"chart_template_id"}), @ORM\Index(name="IDX_2B80B04A7871026A", columns={"auth_signup_template_user_id"}), @ORM\Index(name="IDX_2B80B04A979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_2B80B04A7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_2B80B04A4C10A2D2", columns={"create_uid"})})
  * @ORM\Entity
  */
 class ResConfigSettings
@@ -210,6 +210,292 @@ class ResConfigSettings
      * @ORM\Column(name="module_web_clearbit", type="boolean", nullable=true, options={"comment"="Customer Autocomplete"})
      */
     private $moduleWebClearbit;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_hr_org_chart", type="boolean", nullable=true, options={"comment"="Show Organizational Chart"})
+     */
+    private $moduleHrOrgChart;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="company_share_product", type="boolean", nullable=true, options={"comment"="Share product to all companies"})
+     */
+    private $companyShareProduct;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="group_uom", type="boolean", nullable=true, options={"comment"="Units of Measure"})
+     */
+    private $groupUom;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="group_product_variant", type="boolean", nullable=true, options={"comment"="Attributes and Variants"})
+     */
+    private $groupProductVariant;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="group_stock_packaging", type="boolean", nullable=true, options={"comment"="Product Packages"})
+     */
+    private $groupStockPackaging;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="group_sale_pricelist", type="boolean", nullable=true, options={"comment"="Use pricelists to adapt your price per customers"})
+     */
+    private $groupSalePricelist;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="group_product_pricelist", type="boolean", nullable=true, options={"comment"="Show pricelists On Products"})
+     */
+    private $groupProductPricelist;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="group_pricelist_item", type="boolean", nullable=true, options={"comment"="Show pricelists to customers"})
+     */
+    private $groupPricelistItem;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_accountant", type="boolean", nullable=true, options={"comment"="Accounting"})
+     */
+    private $moduleAccountAccountant;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="group_analytic_accounting", type="boolean", nullable=true, options={"comment"="Analytic Accounting"})
+     */
+    private $groupAnalyticAccounting;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="group_warning_account", type="boolean", nullable=true, options={"comment"="Warnings"})
+     */
+    private $groupWarningAccount;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="group_cash_rounding", type="boolean", nullable=true, options={"comment"="Cash Rounding"})
+     */
+    private $groupCashRounding;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_asset", type="boolean", nullable=true, options={"comment"="Assets Management"})
+     */
+    private $moduleAccountAsset;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_deferred_revenue", type="boolean", nullable=true, options={"comment"="Revenue Recognition"})
+     */
+    private $moduleAccountDeferredRevenue;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_budget", type="boolean", nullable=true, options={"comment"="Budget Management"})
+     */
+    private $moduleAccountBudget;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_payment", type="boolean", nullable=true, options={"comment"="Online Payment"})
+     */
+    private $moduleAccountPayment;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_reports", type="boolean", nullable=true, options={"comment"="Dynamic Reports"})
+     */
+    private $moduleAccountReports;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_reports_followup", type="boolean", nullable=true, options={"comment"="Follow-up Levels"})
+     */
+    private $moduleAccountReportsFollowup;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_l10n_us_check_printing", type="boolean", nullable=true, options={"comment"="Allow check printing and deposits"})
+     */
+    private $moduleL10nUsCheckPrinting;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_batch_deposit", type="boolean", nullable=true, options={"comment"="Use batch deposit"})
+     */
+    private $moduleAccountBatchDeposit;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_sepa", type="boolean", nullable=true, options={"comment"="SEPA Credit Transfer (SCT)"})
+     */
+    private $moduleAccountSepa;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_sepa_direct_debit", type="boolean", nullable=true, options={"comment"="Use SEPA Direct Debit"})
+     */
+    private $moduleAccountSepaDirectDebit;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_plaid", type="boolean", nullable=true, options={"comment"="Plaid Connector"})
+     */
+    private $moduleAccountPlaid;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_yodlee", type="boolean", nullable=true, options={"comment"="Bank Interface - Sync your bank feeds automatically"})
+     */
+    private $moduleAccountYodlee;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_bank_statement_import_qif", type="boolean", nullable=true, options={"comment"="Import .qif files"})
+     */
+    private $moduleAccountBankStatementImportQif;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_bank_statement_import_ofx", type="boolean", nullable=true, options={"comment"="Import in .ofx format"})
+     */
+    private $moduleAccountBankStatementImportOfx;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_bank_statement_import_csv", type="boolean", nullable=true, options={"comment"="Import in .csv format"})
+     */
+    private $moduleAccountBankStatementImportCsv;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_bank_statement_import_camt", type="boolean", nullable=true, options={"comment"="Import in CAMT.053 format"})
+     */
+    private $moduleAccountBankStatementImportCamt;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_currency_rate_live", type="boolean", nullable=true, options={"comment"="Automatic Currency Rates"})
+     */
+    private $moduleCurrencyRateLive;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_print_docsaway", type="boolean", nullable=true, options={"comment"="Docsaway"})
+     */
+    private $modulePrintDocsaway;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_product_margin", type="boolean", nullable=true, options={"comment"="Allow Product Margin"})
+     */
+    private $moduleProductMargin;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_l10n_eu_service", type="boolean", nullable=true, options={"comment"="EU Digital Goods VAT"})
+     */
+    private $moduleL10nEuService;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_account_taxcloud", type="boolean", nullable=true, options={"comment"="Account TaxCloud"})
+     */
+    private $moduleAccountTaxcloud;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="module_website_version", type="boolean", nullable=true, options={"comment"="A/B Testing"})
+     */
+    private $moduleWebsiteVersion;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="google_maps_api_key", type="string", nullable=true, options={"comment"="Google Maps API Key"})
+     */
+    private $googleMapsApiKey;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="has_google_analytics", type="boolean", nullable=true, options={"comment"="Google Analytics"})
+     */
+    private $hasGoogleAnalytics;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="has_google_analytics_dashboard", type="boolean", nullable=true, options={"comment"="Google Analytics in Dashboard"})
+     */
+    private $hasGoogleAnalyticsDashboard;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="has_google_maps", type="boolean", nullable=true, options={"comment"="Google Maps"})
+     */
+    private $hasGoogleMaps;
+
+    /**
+     * @var \Website
+     *
+     * @ORM\ManyToOne(targetEntity="Website")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="website_id", referencedColumnName="id")
+     * })
+     */
+    private $website;
+
+    /**
+     * @var \AccountChartTemplate
+     *
+     * @ORM\ManyToOne(targetEntity="AccountChartTemplate")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="chart_template_id", referencedColumnName="id")
+     * })
+     */
+    private $chartTemplate;
 
     /**
      * @var \ResUsers

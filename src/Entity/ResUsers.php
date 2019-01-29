@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResUsers
  *
- * @ORM\Table(name="res_users", uniqueConstraints={@ORM\UniqueConstraint(name="res_users_login_key", columns={"login"})}, indexes={@ORM\Index(name="IDX_52AE73429393F8FE", columns={"partner_id"}), @ORM\Index(name="IDX_52AE73425C721A3C", columns={"sale_team_id"}), @ORM\Index(name="IDX_52AE73425E564AE2", columns={"alias_id"}), @ORM\Index(name="IDX_52AE73427C455263", columns={"write_uid"}), @ORM\Index(name="IDX_52AE73424C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_52AE7342979B1AD6", columns={"company_id"})})
+ * @ORM\Table(name="res_users", uniqueConstraints={@ORM\UniqueConstraint(name="res_users_login_key", columns={"login"})}, indexes={@ORM\Index(name="IDX_52AE73425C721A3C", columns={"sale_team_id"}), @ORM\Index(name="IDX_52AE73425E564AE2", columns={"alias_id"}), @ORM\Index(name="IDX_52AE73427C455263", columns={"write_uid"}), @ORM\Index(name="IDX_52AE73424C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_52AE7342979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_52AE73429393F8FE", columns={"partner_id"})})
  * @ORM\Entity
  */
 class ResUsers
@@ -107,16 +107,6 @@ class ResUsers
     private $targetSalesDone;
 
     /**
-     * @var \ResPartner
-     *
-     * @ORM\ManyToOne(targetEntity="ResPartner")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
-     * })
-     */
-    private $partner;
-
-    /**
      * @var \CrmTeam
      *
      * @ORM\ManyToOne(targetEntity="CrmTeam")
@@ -165,6 +155,16 @@ class ResUsers
      * })
      */
     private $company;
+
+    /**
+     * @var \ResPartner
+     *
+     * @ORM\ManyToOne(targetEntity="ResPartner")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
+     * })
+     */
+    private $partner;
 
 
 }

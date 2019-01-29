@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MailTest
  *
- * @ORM\Table(name="mail_test", indexes={@ORM\Index(name="IDX_7504ED655E564AE2", columns={"alias_id"}), @ORM\Index(name="IDX_7504ED657C455263", columns={"write_uid"}), @ORM\Index(name="IDX_7504ED654C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="mail_test", indexes={@ORM\Index(name="IDX_7504ED657C455263", columns={"write_uid"}), @ORM\Index(name="IDX_7504ED654C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_7504ED655E564AE2", columns={"alias_id"})})
  * @ORM\Entity
  */
 class MailTest
@@ -58,16 +58,6 @@ class MailTest
     private $writeDate;
 
     /**
-     * @var \MailAlias
-     *
-     * @ORM\ManyToOne(targetEntity="MailAlias")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="alias_id", referencedColumnName="id")
-     * })
-     */
-    private $alias;
-
-    /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
@@ -86,6 +76,16 @@ class MailTest
      * })
      */
     private $createUid;
+
+    /**
+     * @var \MailAlias
+     *
+     * @ORM\ManyToOne(targetEntity="MailAlias")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="alias_id", referencedColumnName="id")
+     * })
+     */
+    private $alias;
 
 
 }

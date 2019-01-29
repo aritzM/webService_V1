@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BasePartnerMergeLine
  *
- * @ORM\Table(name="base_partner_merge_line", indexes={@ORM\Index(name="IDX_99AB086098899D61", columns={"wizard_id"}), @ORM\Index(name="IDX_99AB08604C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_99AB08607C455263", columns={"write_uid"})})
+ * @ORM\Table(name="base_partner_merge_line", indexes={@ORM\Index(name="IDX_99AB08607C455263", columns={"write_uid"}), @ORM\Index(name="IDX_99AB08604C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_99AB086098899D61", columns={"wizard_id"})})
  * @ORM\Entity
  */
 class BasePartnerMergeLine
@@ -51,14 +51,14 @@ class BasePartnerMergeLine
     private $writeDate;
 
     /**
-     * @var \BasePartnerMergeAutomaticWizard
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="BasePartnerMergeAutomaticWizard")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="wizard_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $wizard;
+    private $writeUid;
 
     /**
      * @var \ResUsers
@@ -71,14 +71,14 @@ class BasePartnerMergeLine
     private $createUid;
 
     /**
-     * @var \ResUsers
+     * @var \BasePartnerMergeAutomaticWizard
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="BasePartnerMergeAutomaticWizard")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="wizard_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $wizard;
 
 
 }

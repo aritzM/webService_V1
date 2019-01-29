@@ -163,6 +163,13 @@ class MailComposeMessage
     private $writeDate;
 
     /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="website_published", type="boolean", nullable=true, options={"comment"="Published"})
+     */
+    private $websitePublished;
+
+    /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
