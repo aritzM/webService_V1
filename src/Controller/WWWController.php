@@ -14,6 +14,14 @@ use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 
 class WWWController extends AbstractController
 {
+    //private static $USER_ID = null;
+    /**
+     * @Route("/index", name="index")
+     */
+
+    public function indexLogin(){
+        return $this->render('Tienda/Usuario/usuario.html.twig');
+    }
     /**
      * @Route("/", name="home")
      */
@@ -90,8 +98,8 @@ class WWWController extends AbstractController
 
                         if($plain_password == $item->getPassword()){
 
-                            $parametros = array('userID' => $item->getId());
-
+                            $parametros = array('userID' => $item->getId(), 'error' => null);
+                            //$this->USER_ID = $item->getId();
                             return $this->render('Tienda/index.html.twig', $parametros);
 
                         }
