@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModuleModuleDependency
  *
- * @ORM\Table(name="ir_module_module_dependency", indexes={@ORM\Index(name="ir_module_module_dependency_name_index", columns={"name"}), @ORM\Index(name="IDX_CDEA79427C455263", columns={"write_uid"}), @ORM\Index(name="IDX_CDEA79424C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_CDEA7942AFC2B591", columns={"module_id"})})
+ * @ORM\Table(name="ir_module_module_dependency", indexes={@ORM\Index(name="ir_module_module_dependency_name_index", columns={"name"}), @ORM\Index(name="IDX_CDEA7942AFC2B591", columns={"module_id"}), @ORM\Index(name="IDX_CDEA79424C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_CDEA79427C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrModuleModuleDependency
@@ -44,14 +44,14 @@ class IrModuleModuleDependency
     private $name;
 
     /**
-     * @var \ResUsers
+     * @var \IrModuleModule
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrModuleModule")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $module;
 
     /**
      * @var \ResUsers
@@ -64,14 +64,14 @@ class IrModuleModuleDependency
     private $createUid;
 
     /**
-     * @var \IrModuleModule
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrModuleModule")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $module;
+    private $writeUid;
 
 
 }

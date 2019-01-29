@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResRequestLink
  *
- * @ORM\Table(name="res_request_link", indexes={@ORM\Index(name="IDX_4FEE2AF97C455263", columns={"write_uid"}), @ORM\Index(name="IDX_4FEE2AF94C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="res_request_link", indexes={@ORM\Index(name="IDX_4FEE2AF94C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_4FEE2AF97C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResRequestLink
@@ -62,20 +62,20 @@ class ResRequestLink
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

@@ -27,20 +27,20 @@ class RelServerActions
      *
      * @ORM\ManyToOne(targetEntity="IrActServer")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="action_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="server_id", referencedColumnName="id")
      * })
      */
-    private $action;
+    private $server;
 
     /**
      * @var \IrActServer
      *
      * @ORM\ManyToOne(targetEntity="IrActServer")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="server_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="action_id", referencedColumnName="id")
      * })
      */
-    private $server;
+    private $action;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrSequenceDateRange
  *
- * @ORM\Table(name="ir_sequence_date_range", indexes={@ORM\Index(name="IDX_AB33D8817C455263", columns={"write_uid"}), @ORM\Index(name="IDX_AB33D8814C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_AB33D88198FB19AE", columns={"sequence_id"})})
+ * @ORM\Table(name="ir_sequence_date_range", indexes={@ORM\Index(name="IDX_AB33D88198FB19AE", columns={"sequence_id"}), @ORM\Index(name="IDX_AB33D8814C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_AB33D8817C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrSequenceDateRange
@@ -58,14 +58,14 @@ class IrSequenceDateRange
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrSequence
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrSequence")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="sequence_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $sequence;
 
     /**
      * @var \ResUsers
@@ -78,14 +78,14 @@ class IrSequenceDateRange
     private $createUid;
 
     /**
-     * @var \IrSequence
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrSequence")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sequence_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $sequence;
+    private $writeUid;
 
 
 }

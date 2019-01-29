@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrUiMenuGroupRel
  *
- * @ORM\Table(name="ir_ui_menu_group_rel", uniqueConstraints={@ORM\UniqueConstraint(name="ir_ui_menu_group_rel_menu_id_gid_key", columns={"menu_id", "gid"})}, indexes={@ORM\Index(name="ir_ui_menu_group_rel_menu_id_idx", columns={"menu_id"}), @ORM\Index(name="ir_ui_menu_group_rel_gid_idx", columns={"gid"})})
+ * @ORM\Table(name="ir_ui_menu_group_rel", uniqueConstraints={@ORM\UniqueConstraint(name="ir_ui_menu_group_rel_menu_id_gid_key", columns={"menu_id", "gid"})}, indexes={@ORM\Index(name="ir_ui_menu_group_rel_gid_idx", columns={"gid"}), @ORM\Index(name="ir_ui_menu_group_rel_menu_id_idx", columns={"menu_id"})})
  * @ORM\Entity
  */
 class IrUiMenuGroupRel
@@ -23,16 +23,6 @@ class IrUiMenuGroupRel
     private $id;
 
     /**
-     * @var \ResGroups
-     *
-     * @ORM\ManyToOne(targetEntity="ResGroups")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="gid", referencedColumnName="id")
-     * })
-     */
-    private $gid;
-
-    /**
      * @var \IrUiMenu
      *
      * @ORM\ManyToOne(targetEntity="IrUiMenu")
@@ -41,6 +31,16 @@ class IrUiMenuGroupRel
      * })
      */
     private $menu;
+
+    /**
+     * @var \ResGroups
+     *
+     * @ORM\ManyToOne(targetEntity="ResGroups")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="gid", referencedColumnName="id")
+     * })
+     */
+    private $gid;
 
 
 }

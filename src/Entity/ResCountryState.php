@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResCountryState
  *
- * @ORM\Table(name="res_country_state", uniqueConstraints={@ORM\UniqueConstraint(name="res_country_state_name_code_uniq", columns={"country_id", "code"})}, indexes={@ORM\Index(name="IDX_57C6B1B57C455263", columns={"write_uid"}), @ORM\Index(name="IDX_57C6B1B54C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_57C6B1B5F92F3E70", columns={"country_id"})})
+ * @ORM\Table(name="res_country_state", uniqueConstraints={@ORM\UniqueConstraint(name="res_country_state_name_code_uniq", columns={"country_id", "code"})}, indexes={@ORM\Index(name="IDX_57C6B1B5F92F3E70", columns={"country_id"}), @ORM\Index(name="IDX_57C6B1B54C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_57C6B1B57C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResCountryState
@@ -51,14 +51,14 @@ class ResCountryState
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \ResCountry
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="ResCountry")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $country;
 
     /**
      * @var \ResUsers
@@ -71,14 +71,14 @@ class ResCountryState
     private $createUid;
 
     /**
-     * @var \ResCountry
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="ResCountry")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $country;
+    private $writeUid;
 
 
 }

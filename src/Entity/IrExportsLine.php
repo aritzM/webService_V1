@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrExportsLine
  *
- * @ORM\Table(name="ir_exports_line", indexes={@ORM\Index(name="ir_exports_line_export_id_index", columns={"export_id"}), @ORM\Index(name="IDX_761089CE7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_761089CE4C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="ir_exports_line", indexes={@ORM\Index(name="ir_exports_line_export_id_index", columns={"export_id"}), @ORM\Index(name="IDX_761089CE4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_761089CE7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrExportsLine
@@ -44,14 +44,14 @@ class IrExportsLine
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrExports
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrExports")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="export_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $export;
 
     /**
      * @var \ResUsers
@@ -64,14 +64,14 @@ class IrExportsLine
     private $createUid;
 
     /**
-     * @var \IrExports
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrExports")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="export_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $export;
+    private $writeUid;
 
 
 }

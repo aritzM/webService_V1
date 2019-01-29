@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModuleCategory
  *
- * @ORM\Table(name="ir_module_category", indexes={@ORM\Index(name="ir_module_category_name_index", columns={"name"}), @ORM\Index(name="ir_module_category_parent_id_index", columns={"parent_id"}), @ORM\Index(name="IDX_3BB727C27C455263", columns={"write_uid"}), @ORM\Index(name="IDX_3BB727C24C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="ir_module_category", indexes={@ORM\Index(name="ir_module_category_parent_id_index", columns={"parent_id"}), @ORM\Index(name="ir_module_category_name_index", columns={"name"}), @ORM\Index(name="IDX_3BB727C24C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_3BB727C27C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrModuleCategory
@@ -72,14 +72,14 @@ class IrModuleCategory
     private $exclusive;
 
     /**
-     * @var \ResUsers
+     * @var \IrModuleCategory
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrModuleCategory")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $parent;
 
     /**
      * @var \ResUsers
@@ -92,14 +92,14 @@ class IrModuleCategory
     private $createUid;
 
     /**
-     * @var \IrModuleCategory
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrModuleCategory")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $parent;
+    private $writeUid;
 
 
 }

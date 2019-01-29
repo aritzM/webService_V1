@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResUsers
  *
- * @ORM\Table(name="res_users", uniqueConstraints={@ORM\UniqueConstraint(name="res_users_login_key", columns={"login"})}, indexes={@ORM\Index(name="IDX_52AE73425C721A3C", columns={"sale_team_id"}), @ORM\Index(name="IDX_52AE73425E564AE2", columns={"alias_id"}), @ORM\Index(name="IDX_52AE73427C455263", columns={"write_uid"}), @ORM\Index(name="IDX_52AE73424C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_52AE7342979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_52AE73429393F8FE", columns={"partner_id"})})
+ * @ORM\Table(name="res_users", uniqueConstraints={@ORM\UniqueConstraint(name="res_users_login_key", columns={"login"})}, indexes={@ORM\Index(name="IDX_52AE73429393F8FE", columns={"partner_id"}), @ORM\Index(name="IDX_52AE7342979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_52AE73424C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_52AE73427C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResUsers
@@ -86,65 +86,14 @@ class ResUsers
     private $passwordCrypt;
 
     /**
-     * @var string
+     * @var \ResPartner
      *
-     * @ORM\Column(name="notification_type", type="string", nullable=false, options={"comment"="Notification Management"})
-     */
-    private $notificationType;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="target_sales_won", type="integer", nullable=true, options={"comment"="Won in Opportunities Target"})
-     */
-    private $targetSalesWon;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="target_sales_done", type="integer", nullable=true, options={"comment"="Activities Done Target"})
-     */
-    private $targetSalesDone;
-
-    /**
-     * @var \CrmTeam
-     *
-     * @ORM\ManyToOne(targetEntity="CrmTeam")
+     * @ORM\ManyToOne(targetEntity="ResPartner")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sale_team_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
      * })
      */
-    private $saleTeam;
-
-    /**
-     * @var \MailAlias
-     *
-     * @ORM\ManyToOne(targetEntity="MailAlias")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="alias_id", referencedColumnName="id")
-     * })
-     */
-    private $alias;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
-     * })
-     */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $partner;
 
     /**
      * @var \ResCompany
@@ -157,14 +106,24 @@ class ResUsers
     private $company;
 
     /**
-     * @var \ResPartner
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="ResPartner")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $partner;
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

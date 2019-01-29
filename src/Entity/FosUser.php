@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * FosUser
  *
- * @ORM\Table(name="fos_user", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_957a6479a0d96fbf", columns={"email_canonical"}), @ORM\UniqueConstraint(name="uniq_957a6479c05fb297", columns={"confirmation_token"}), @ORM\UniqueConstraint(name="uniq_957a647992fc23a8", columns={"username_canonical"})})
+ * @ORM\Table(name="fos_user", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_957a6479a0d96fbf", columns={"email_canonical"}), @ORM\UniqueConstraint(name="uniq_957a647992fc23a8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="uniq_957a6479c05fb297", columns={"confirmation_token"})})
  * @ORM\Entity
  */
 class FosUser
@@ -107,40 +107,37 @@ class FosUser
         return $this->username;
     }
 
-    public function getEmail(){
-        return $this->email;
-    }
-
     public function getPassword(){
         return $this->password;
+    }
+
+    public function setUsername($username){
+
+         $this->username = $username;
+         $this->usernameCanonical = $username;
+    }
+    public function getEmail(){
+        return $this->email;
     }
     public function getSalt(){
         return $this->salt;
     }
-    public function setUsername($username){
-        $this->username = $username;
-        $this->usernameCanonical = $username;
+    public function setSalt($salt){
+        $this->salt = $salt;
     }
-
     public function setPassword($password){
         $this->password = $password;
-
     }
 
     public function setEmail($email){
         $this->email = $email;
         $this->emailCanonical = $email;
     }
+
+    public function setRoles($roles){
+        $this->roles = $roles;
+    }
     public function setEnabled($enabled){
         $this->enabled = $enabled;
-    }
-
-    public function setSalt($salt){
-        $this->salt = $salt;
-    }
-
-    public function setRoles($roles)
-    {
-        $this->roles = $roles;
     }
 }

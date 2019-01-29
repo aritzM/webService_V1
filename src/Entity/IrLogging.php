@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrLogging
  *
- * @ORM\Table(name="ir_logging", indexes={@ORM\Index(name="ir_logging_level_index", columns={"level"}), @ORM\Index(name="ir_logging_dbname_index", columns={"dbname"}), @ORM\Index(name="ir_logging_type_index", columns={"type"}), @ORM\Index(name="IDX_CBD2F0717C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_logging", indexes={@ORM\Index(name="ir_logging_dbname_index", columns={"dbname"}), @ORM\Index(name="ir_logging_type_index", columns={"type"}), @ORM\Index(name="ir_logging_level_index", columns={"level"}), @ORM\Index(name="IDX_CBD2F0717C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrLogging

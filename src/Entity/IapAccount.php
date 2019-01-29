@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IapAccount
  *
- * @ORM\Table(name="iap_account", indexes={@ORM\Index(name="IDX_E2C4DD7A7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_E2C4DD7A4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_E2C4DD7A979B1AD6", columns={"company_id"})})
+ * @ORM\Table(name="iap_account", indexes={@ORM\Index(name="IDX_E2C4DD7A979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_E2C4DD7A4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_E2C4DD7A7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IapAccount
@@ -51,14 +51,14 @@ class IapAccount
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \ResCompany
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="ResCompany")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $company;
 
     /**
      * @var \ResUsers
@@ -71,14 +71,14 @@ class IapAccount
     private $createUid;
 
     /**
-     * @var \ResCompany
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="ResCompany")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $company;
+    private $writeUid;
 
 
 }

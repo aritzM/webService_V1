@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrActWindowView
  *
- * @ORM\Table(name="ir_act_window_view", uniqueConstraints={@ORM\UniqueConstraint(name="act_window_view_unique_mode_per_action", columns={"act_window_id", "view_mode"})}, indexes={@ORM\Index(name="IDX_85FBB8CC7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_85FBB8CC4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_85FBB8CCE2390CF6", columns={"act_window_id"}), @ORM\Index(name="IDX_85FBB8CC31518C7", columns={"view_id"})})
+ * @ORM\Table(name="ir_act_window_view", uniqueConstraints={@ORM\UniqueConstraint(name="act_window_view_unique_mode_per_action", columns={"act_window_id", "view_mode"})}, indexes={@ORM\Index(name="IDX_85FBB8CC31518C7", columns={"view_id"}), @ORM\Index(name="IDX_85FBB8CCE2390CF6", columns={"act_window_id"}), @ORM\Index(name="IDX_85FBB8CC4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_85FBB8CC7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrActWindowView
@@ -58,24 +58,14 @@ class IrActWindowView
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrUiView
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrUiView")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="view_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $view;
 
     /**
      * @var \IrActWindow
@@ -88,14 +78,24 @@ class IrActWindowView
     private $actWindow;
 
     /**
-     * @var \IrUiView
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrUiView")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="view_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $view;
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

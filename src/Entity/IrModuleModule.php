@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModuleModule
  *
- * @ORM\Table(name="ir_module_module", uniqueConstraints={@ORM\UniqueConstraint(name="name_uniq", columns={"name"}), @ORM\UniqueConstraint(name="ir_module_module_name_uniq", columns={"name"})}, indexes={@ORM\Index(name="ir_module_module_name_index", columns={"name"}), @ORM\Index(name="ir_module_module_category_id_index", columns={"category_id"}), @ORM\Index(name="ir_module_module_state_index", columns={"state"}), @ORM\Index(name="IDX_7E97FCDF7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_7E97FCDF4C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="ir_module_module", uniqueConstraints={@ORM\UniqueConstraint(name="ir_module_module_name_uniq", columns={"name"}), @ORM\UniqueConstraint(name="name_uniq", columns={"name"})}, indexes={@ORM\Index(name="ir_module_module_category_id_index", columns={"category_id"}), @ORM\Index(name="ir_module_module_state_index", columns={"state"})})
  * @ORM\Entity
  */
 class IrModuleModule
@@ -23,6 +23,13 @@ class IrModuleModule
     private $id;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(name="create_uid", type="integer", nullable=true)
+     */
+    private $createUid;
+
+    /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="create_date", type="datetime", nullable=true)
@@ -35,6 +42,13 @@ class IrModuleModule
      * @ORM\Column(name="write_date", type="datetime", nullable=true)
      */
     private $writeDate;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="write_uid", type="integer", nullable=true)
+     */
+    private $writeUid;
 
     /**
      * @var string|null
@@ -91,6 +105,13 @@ class IrModuleModule
      * @ORM\Column(name="shortdesc", type="string", nullable=true)
      */
     private $shortdesc;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="category_id", type="integer", nullable=true)
+     */
+    private $categoryId;
 
     /**
      * @var string|null
@@ -189,36 +210,6 @@ class IrModuleModule
      * @ORM\Column(name="views_by_module", type="text", nullable=true, options={"comment"="Views"})
      */
     private $viewsByModule;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
-     * })
-     */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
-
-    /**
-     * @var \IrModuleCategory
-     *
-     * @ORM\ManyToOne(targetEntity="IrModuleCategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     * })
-     */
-    private $category;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrActUrl
  *
- * @ORM\Table(name="ir_act_url", indexes={@ORM\Index(name="IDX_AB81B2177C455263", columns={"write_uid"}), @ORM\Index(name="IDX_AB81B2174C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_AB81B217DAC4C9DB", columns={"binding_model_id"})})
+ * @ORM\Table(name="ir_act_url", indexes={@ORM\Index(name="IDX_AB81B217DAC4C9DB", columns={"binding_model_id"}), @ORM\Index(name="IDX_AB81B2174C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_AB81B2177C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrActUrl
@@ -79,14 +79,14 @@ class IrActUrl
     private $target;
 
     /**
-     * @var \ResUsers
+     * @var \IrModel
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrModel")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="binding_model_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $bindingModel;
 
     /**
      * @var \ResUsers
@@ -99,14 +99,14 @@ class IrActUrl
     private $createUid;
 
     /**
-     * @var \IrModel
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrModel")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="binding_model_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $bindingModel;
+    private $writeUid;
 
 
 }

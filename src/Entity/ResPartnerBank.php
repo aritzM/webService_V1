@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResPartnerBank
  *
- * @ORM\Table(name="res_partner_bank", uniqueConstraints={@ORM\UniqueConstraint(name="res_partner_bank_unique_number", columns={"sanitized_acc_number", "company_id"})}, indexes={@ORM\Index(name="res_partner_bank_partner_id_index", columns={"partner_id"}), @ORM\Index(name="IDX_8EB118907C455263", columns={"write_uid"}), @ORM\Index(name="IDX_8EB118904C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_8EB11890979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_8EB1189038248176", columns={"currency_id"}), @ORM\Index(name="IDX_8EB1189011C8FB41", columns={"bank_id"})})
+ * @ORM\Table(name="res_partner_bank", uniqueConstraints={@ORM\UniqueConstraint(name="res_partner_bank_unique_number", columns={"sanitized_acc_number", "company_id"})}, indexes={@ORM\Index(name="res_partner_bank_partner_id_index", columns={"partner_id"}), @ORM\Index(name="IDX_8EB1189011C8FB41", columns={"bank_id"}), @ORM\Index(name="IDX_8EB1189038248176", columns={"currency_id"}), @ORM\Index(name="IDX_8EB11890979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_8EB118904C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_8EB118907C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResPartnerBank
@@ -58,44 +58,14 @@ class ResPartnerBank
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \ResPartner
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="ResPartner")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
-
-    /**
-     * @var \ResCompany
-     *
-     * @ORM\ManyToOne(targetEntity="ResCompany")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
-     * })
-     */
-    private $company;
-
-    /**
-     * @var \ResCurrency
-     *
-     * @ORM\ManyToOne(targetEntity="ResCurrency")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
-     * })
-     */
-    private $currency;
+    private $partner;
 
     /**
      * @var \ResBank
@@ -108,14 +78,44 @@ class ResPartnerBank
     private $bank;
 
     /**
-     * @var \ResPartner
+     * @var \ResCurrency
      *
-     * @ORM\ManyToOne(targetEntity="ResPartner")
+     * @ORM\ManyToOne(targetEntity="ResCurrency")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
      * })
      */
-    private $partner;
+    private $currency;
+
+    /**
+     * @var \ResCompany
+     *
+     * @ORM\ManyToOne(targetEntity="ResCompany")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     * })
+     */
+    private $company;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     * })
+     */
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

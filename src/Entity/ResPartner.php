@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResPartner
  *
- * @ORM\Table(name="res_partner", indexes={@ORM\Index(name="res_partner_commercial_partner_id_index", columns={"commercial_partner_id"}), @ORM\Index(name="res_partner_parent_id_index", columns={"parent_id"}), @ORM\Index(name="res_partner_display_name_index", columns={"display_name"}), @ORM\Index(name="res_partner_ref_index", columns={"ref"}), @ORM\Index(name="res_partner_name_index", columns={"name"}), @ORM\Index(name="res_partner_date_index", columns={"date"}), @ORM\Index(name="res_partner_company_id_index", columns={"company_id"}), @ORM\Index(name="IDX_13686AF8296CD8AE", columns={"team_id"}), @ORM\Index(name="IDX_13686AF87C455263", columns={"write_uid"}), @ORM\Index(name="IDX_13686AF84C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_13686AF8730F10D1", columns={"commercial_partner_country_id"}), @ORM\Index(name="IDX_13686AF82B19A734", columns={"industry_id"}), @ORM\Index(name="IDX_13686AF8F92F3E70", columns={"country_id"}), @ORM\Index(name="IDX_13686AF85D83CC1", columns={"state_id"}), @ORM\Index(name="IDX_13686AF8A76ED395", columns={"user_id"}), @ORM\Index(name="IDX_13686AF82B36786B", columns={"title"})})
+ * @ORM\Table(name="res_partner", indexes={@ORM\Index(name="res_partner_ref_index", columns={"ref"}), @ORM\Index(name="res_partner_name_index", columns={"name"}), @ORM\Index(name="res_partner_date_index", columns={"date"}), @ORM\Index(name="res_partner_parent_id_index", columns={"parent_id"}), @ORM\Index(name="res_partner_company_id_index", columns={"company_id"}), @ORM\Index(name="res_partner_commercial_partner_id_index", columns={"commercial_partner_id"}), @ORM\Index(name="res_partner_display_name_index", columns={"display_name"}), @ORM\Index(name="IDX_13686AF85D83CC1", columns={"state_id"}), @ORM\Index(name="IDX_13686AF8F92F3E70", columns={"country_id"}), @ORM\Index(name="IDX_13686AF82B36786B", columns={"title"}), @ORM\Index(name="IDX_13686AF8A76ED395", columns={"user_id"}), @ORM\Index(name="IDX_13686AF82B19A734", columns={"industry_id"}), @ORM\Index(name="IDX_13686AF8730F10D1", columns={"commercial_partner_country_id"}), @ORM\Index(name="IDX_13686AF84C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_13686AF87C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResPartner
@@ -240,158 +240,14 @@ class ResPartner
     private $writeDate;
 
     /**
-     * @var \DateTime|null
+     * @var \ResCountryState
      *
-     * @ORM\Column(name="activity_date_deadline", type="date", nullable=true, options={"comment"="Next Activity Deadline"})
-     */
-    private $activityDateDeadline;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="message_last_post", type="datetime", nullable=true, options={"comment"="Last Message Date"})
-     */
-    private $messageLastPost;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="message_bounce", type="integer", nullable=true, options={"comment"="Bounce"})
-     */
-    private $messageBounce;
-
-    /**
-     * @var bool|null
-     *
-     * @ORM\Column(name="opt_out", type="boolean", nullable=true, options={"comment"="Opt-Out"})
-     */
-    private $optOut;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="signup_token", type="string", nullable=true, options={"comment"="Signup Token"})
-     */
-    private $signupToken;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="signup_type", type="string", nullable=true, options={"comment"="Signup Token Type"})
-     */
-    private $signupType;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="signup_expiration", type="datetime", nullable=true, options={"comment"="Signup Expiration"})
-     */
-    private $signupExpiration;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="calendar_last_notif_ack", type="datetime", nullable=true, options={"comment"="Last notification marked as read from base Calendar"})
-     */
-    private $calendarLastNotifAck;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="debit_limit", type="decimal", precision=10, scale=0, nullable=true, options={"comment"="Payable Limit"})
-     */
-    private $debitLimit;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="last_time_entries_checked", type="datetime", nullable=true, options={"comment"="Latest Invoices & Payments Matching Date"})
-     */
-    private $lastTimeEntriesChecked;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="invoice_warn", type="string", nullable=false, options={"comment"="Invoice"})
-     */
-    private $invoiceWarn;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="invoice_warn_msg", type="text", nullable=true, options={"comment"="Message for Invoice"})
-     */
-    private $invoiceWarnMsg;
-
-    /**
-     * @var \CrmTeam
-     *
-     * @ORM\ManyToOne(targetEntity="CrmTeam")
+     * @ORM\ManyToOne(targetEntity="ResCountryState")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="state_id", referencedColumnName="id")
      * })
      */
-    private $team;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
-     * })
-     */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
-
-    /**
-     * @var \ResCountry
-     *
-     * @ORM\ManyToOne(targetEntity="ResCountry")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="commercial_partner_country_id", referencedColumnName="id")
-     * })
-     */
-    private $commercialPartnerCountry;
-
-    /**
-     * @var \ResPartner
-     *
-     * @ORM\ManyToOne(targetEntity="ResPartner")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="commercial_partner_id", referencedColumnName="id")
-     * })
-     */
-    private $commercialPartner;
-
-    /**
-     * @var \ResCompany
-     *
-     * @ORM\ManyToOne(targetEntity="ResCompany")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
-     * })
-     */
-    private $company;
-
-    /**
-     * @var \ResPartnerIndustry
-     *
-     * @ORM\ManyToOne(targetEntity="ResPartnerIndustry")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="industry_id", referencedColumnName="id")
-     * })
-     */
-    private $industry;
+    private $state;
 
     /**
      * @var \ResCountry
@@ -404,24 +260,14 @@ class ResPartner
     private $country;
 
     /**
-     * @var \ResCountryState
+     * @var \ResPartnerTitle
      *
-     * @ORM\ManyToOne(targetEntity="ResCountryState")
+     * @ORM\ManyToOne(targetEntity="ResPartnerTitle")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="state_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="title", referencedColumnName="id")
      * })
      */
-    private $state;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
-     */
-    private $user;
+    private $title;
 
     /**
      * @var \ResPartner
@@ -434,14 +280,74 @@ class ResPartner
     private $parent;
 
     /**
-     * @var \ResPartnerTitle
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="ResPartnerTitle")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="title", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $title;
+    private $user;
+
+    /**
+     * @var \ResPartnerIndustry
+     *
+     * @ORM\ManyToOne(targetEntity="ResPartnerIndustry")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="industry_id", referencedColumnName="id")
+     * })
+     */
+    private $industry;
+
+    /**
+     * @var \ResCompany
+     *
+     * @ORM\ManyToOne(targetEntity="ResCompany")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     * })
+     */
+    private $company;
+
+    /**
+     * @var \ResPartner
+     *
+     * @ORM\ManyToOne(targetEntity="ResPartner")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="commercial_partner_id", referencedColumnName="id")
+     * })
+     */
+    private $commercialPartner;
+
+    /**
+     * @var \ResCountry
+     *
+     * @ORM\ManyToOne(targetEntity="ResCountry")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="commercial_partner_country_id", referencedColumnName="id")
+     * })
+     */
+    private $commercialPartnerCountry;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     * })
+     */
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

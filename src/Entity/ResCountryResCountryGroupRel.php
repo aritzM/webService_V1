@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResCountryResCountryGroupRel
  *
- * @ORM\Table(name="res_country_res_country_group_rel", uniqueConstraints={@ORM\UniqueConstraint(name="res_country_res_country_group_res_country_id_res_country_gr_key", columns={"res_country_id", "res_country_group_id"})}, indexes={@ORM\Index(name="res_country_res_country_group_rel_res_country_group_id_idx", columns={"res_country_group_id"}), @ORM\Index(name="res_country_res_country_group_rel_res_country_id_idx", columns={"res_country_id"})})
+ * @ORM\Table(name="res_country_res_country_group_rel", uniqueConstraints={@ORM\UniqueConstraint(name="res_country_res_country_group_res_country_id_res_country_gr_key", columns={"res_country_id", "res_country_group_id"})}, indexes={@ORM\Index(name="res_country_res_country_group_rel_res_country_id_idx", columns={"res_country_id"}), @ORM\Index(name="res_country_res_country_group_rel_res_country_group_id_idx", columns={"res_country_group_id"})})
  * @ORM\Entity
  */
 class ResCountryResCountryGroupRel
@@ -23,16 +23,6 @@ class ResCountryResCountryGroupRel
     private $id;
 
     /**
-     * @var \ResCountryGroup
-     *
-     * @ORM\ManyToOne(targetEntity="ResCountryGroup")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="res_country_group_id", referencedColumnName="id")
-     * })
-     */
-    private $resCountryGroup;
-
-    /**
      * @var \ResCountry
      *
      * @ORM\ManyToOne(targetEntity="ResCountry")
@@ -41,6 +31,16 @@ class ResCountryResCountryGroupRel
      * })
      */
     private $resCountry;
+
+    /**
+     * @var \ResCountryGroup
+     *
+     * @ORM\ManyToOne(targetEntity="ResCountryGroup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="res_country_group_id", referencedColumnName="id")
+     * })
+     */
+    private $resCountryGroup;
 
 
 }

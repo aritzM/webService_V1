@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrTranslation
  *
- * @ORM\Table(name="ir_translation", indexes={@ORM\Index(name="ir_translation_type_index", columns={"type"}), @ORM\Index(name="ir_translation_ltn", columns={"name", "lang", "type"}), @ORM\Index(name="ir_translation_module_index", columns={"module"}), @ORM\Index(name="ir_translation_res_id_index", columns={"res_id"}), @ORM\Index(name="ir_translation_comments_index", columns={"comments"}), @ORM\Index(name="IDX_B899F19F31098462", columns={"lang"})})
+ * @ORM\Table(name="ir_translation", indexes={@ORM\Index(name="ir_translation_ltn", columns={"name", "lang", "type"}), @ORM\Index(name="ir_translation_res_id_index", columns={"res_id"}), @ORM\Index(name="ir_translation_module_index", columns={"module"}), @ORM\Index(name="ir_translation_comments_index", columns={"comments"}), @ORM\Index(name="ir_translation_type_index", columns={"type"}), @ORM\Index(name="IDX_B899F19F31098462", columns={"lang"})})
  * @ORM\Entity
  */
 class IrTranslation

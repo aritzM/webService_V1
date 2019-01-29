@@ -23,16 +23,6 @@ class AlmiUsuariosJuegoSkinsRel
     private $id;
 
     /**
-     * @var \AlmiUsuariosJuego
-     *
-     * @ORM\ManyToOne(targetEntity="AlmiUsuariosJuego")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="almi_usuarios_juego_id", referencedColumnName="id")
-     * })
-     */
-    private $almiUsuariosJuego;
-
-    /**
      * @var \AlmiSkinsJuego
      *
      * @ORM\ManyToOne(targetEntity="AlmiSkinsJuego")
@@ -41,6 +31,16 @@ class AlmiUsuariosJuegoSkinsRel
      * })
      */
     private $almiSkinsJuego;
+
+    /**
+     * @var \AlmiUsuariosJuego
+     *
+     * @ORM\ManyToOne(targetEntity="AlmiUsuariosJuego")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="almi_usuarios_juego_id", referencedColumnName="id")
+     * })
+     */
+    private $almiUsuariosJuego;
 
 
 }

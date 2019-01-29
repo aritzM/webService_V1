@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrRule
  *
- * @ORM\Table(name="ir_rule", indexes={@ORM\Index(name="ir_rule_name_index", columns={"name"}), @ORM\Index(name="ir_rule_model_id_index", columns={"model_id"}), @ORM\Index(name="IDX_187751487C455263", columns={"write_uid"}), @ORM\Index(name="IDX_187751484C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="ir_rule", indexes={@ORM\Index(name="ir_rule_name_index", columns={"name"}), @ORM\Index(name="ir_rule_model_id_index", columns={"model_id"}), @ORM\Index(name="IDX_187751484C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_187751487C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrRule
@@ -93,14 +93,14 @@ class IrRule
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrModel
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrModel")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="model_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $model;
 
     /**
      * @var \ResUsers
@@ -113,14 +113,14 @@ class IrRule
     private $createUid;
 
     /**
-     * @var \IrModel
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrModel")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $model;
+    private $writeUid;
 
 
 }

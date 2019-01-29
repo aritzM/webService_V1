@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrUiViewGroupRel
  *
- * @ORM\Table(name="ir_ui_view_group_rel", uniqueConstraints={@ORM\UniqueConstraint(name="ir_ui_view_group_rel_view_id_group_id_key", columns={"view_id", "group_id"})}, indexes={@ORM\Index(name="ir_ui_view_group_rel_group_id_idx", columns={"group_id"}), @ORM\Index(name="ir_ui_view_group_rel_view_id_idx", columns={"view_id"})})
+ * @ORM\Table(name="ir_ui_view_group_rel", uniqueConstraints={@ORM\UniqueConstraint(name="ir_ui_view_group_rel_view_id_group_id_key", columns={"view_id", "group_id"})}, indexes={@ORM\Index(name="ir_ui_view_group_rel_view_id_idx", columns={"view_id"}), @ORM\Index(name="ir_ui_view_group_rel_group_id_idx", columns={"group_id"})})
  * @ORM\Entity
  */
 class IrUiViewGroupRel
@@ -23,16 +23,6 @@ class IrUiViewGroupRel
     private $id;
 
     /**
-     * @var \ResGroups
-     *
-     * @ORM\ManyToOne(targetEntity="ResGroups")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="group_id", referencedColumnName="id")
-     * })
-     */
-    private $group;
-
-    /**
      * @var \IrUiView
      *
      * @ORM\ManyToOne(targetEntity="IrUiView")
@@ -41,6 +31,16 @@ class IrUiViewGroupRel
      * })
      */
     private $view;
+
+    /**
+     * @var \ResGroups
+     *
+     * @ORM\ManyToOne(targetEntity="ResGroups")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     * })
+     */
+    private $group;
 
 
 }

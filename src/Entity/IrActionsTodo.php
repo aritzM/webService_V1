@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrActionsTodo
  *
- * @ORM\Table(name="ir_actions_todo", indexes={@ORM\Index(name="ir_actions_todo_action_id_index", columns={"action_id"}), @ORM\Index(name="IDX_2D3ACDE27C455263", columns={"write_uid"}), @ORM\Index(name="IDX_2D3ACDE24C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="ir_actions_todo", indexes={@ORM\Index(name="ir_actions_todo_action_id_index", columns={"action_id"}), @ORM\Index(name="IDX_2D3ACDE24C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_2D3ACDE27C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrActionsTodo
@@ -69,20 +69,20 @@ class IrActionsTodo
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

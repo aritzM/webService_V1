@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * WebEditorConverterTestSub
  *
- * @ORM\Table(name="web_editor_converter_test_sub", indexes={@ORM\Index(name="IDX_11DB13E67C455263", columns={"write_uid"}), @ORM\Index(name="IDX_11DB13E64C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="web_editor_converter_test_sub", indexes={@ORM\Index(name="IDX_11DB13E64C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_11DB13E67C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class WebEditorConverterTestSub
@@ -48,20 +48,20 @@ class WebEditorConverterTestSub
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

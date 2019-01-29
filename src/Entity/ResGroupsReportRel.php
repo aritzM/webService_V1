@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResGroupsReportRel
  *
- * @ORM\Table(name="res_groups_report_rel", uniqueConstraints={@ORM\UniqueConstraint(name="res_groups_report_rel_uid_gid_key", columns={"uid", "gid"})}, indexes={@ORM\Index(name="res_groups_report_rel_uid_idx", columns={"uid"}), @ORM\Index(name="res_groups_report_rel_gid_idx", columns={"gid"})})
+ * @ORM\Table(name="res_groups_report_rel", uniqueConstraints={@ORM\UniqueConstraint(name="res_groups_report_rel_uid_gid_key", columns={"uid", "gid"})}, indexes={@ORM\Index(name="res_groups_report_rel_gid_idx", columns={"gid"}), @ORM\Index(name="res_groups_report_rel_uid_idx", columns={"uid"})})
  * @ORM\Entity
  */
 class ResGroupsReportRel
@@ -23,16 +23,6 @@ class ResGroupsReportRel
     private $id;
 
     /**
-     * @var \ResGroups
-     *
-     * @ORM\ManyToOne(targetEntity="ResGroups")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="gid", referencedColumnName="id")
-     * })
-     */
-    private $gid;
-
-    /**
      * @var \IrActReportXml
      *
      * @ORM\ManyToOne(targetEntity="IrActReportXml")
@@ -41,6 +31,16 @@ class ResGroupsReportRel
      * })
      */
     private $uid;
+
+    /**
+     * @var \ResGroups
+     *
+     * @ORM\ManyToOne(targetEntity="ResGroups")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="gid", referencedColumnName="id")
+     * })
+     */
+    private $gid;
 
 
 }

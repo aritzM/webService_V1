@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BaseImportTestsModelsM2o
  *
- * @ORM\Table(name="base_import_tests_models_m2o", indexes={@ORM\Index(name="IDX_678CAAD77C455263", columns={"write_uid"}), @ORM\Index(name="IDX_678CAAD74C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_678CAAD71D775834", columns={"value"})})
+ * @ORM\Table(name="base_import_tests_models_m2o", indexes={@ORM\Index(name="IDX_678CAAD71D775834", columns={"value"}), @ORM\Index(name="IDX_678CAAD74C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_678CAAD77C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class BaseImportTestsModelsM2o
@@ -37,14 +37,14 @@ class BaseImportTestsModelsM2o
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \BaseImportTestsModelsM2oRelated
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="BaseImportTestsModelsM2oRelated")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="value", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $value;
 
     /**
      * @var \ResUsers
@@ -57,14 +57,14 @@ class BaseImportTestsModelsM2o
     private $createUid;
 
     /**
-     * @var \BaseImportTestsModelsM2oRelated
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="BaseImportTestsModelsM2oRelated")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="value", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $value;
+    private $writeUid;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * WebPlanner
  *
- * @ORM\Table(name="web_planner", indexes={@ORM\Index(name="IDX_7DFED9FF7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_7DFED9FF4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_7DFED9FF31518C7", columns={"view_id"}), @ORM\Index(name="IDX_7DFED9FFCCD7E912", columns={"menu_id"})})
+ * @ORM\Table(name="web_planner", indexes={@ORM\Index(name="IDX_7DFED9FFCCD7E912", columns={"menu_id"}), @ORM\Index(name="IDX_7DFED9FF31518C7", columns={"view_id"}), @ORM\Index(name="IDX_7DFED9FF4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_7DFED9FF7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class WebPlanner
@@ -65,24 +65,14 @@ class WebPlanner
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrUiMenu
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrUiMenu")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="menu_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $menu;
 
     /**
      * @var \IrUiView
@@ -95,14 +85,24 @@ class WebPlanner
     private $view;
 
     /**
-     * @var \IrUiMenu
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrUiMenu")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="menu_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $menu;
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

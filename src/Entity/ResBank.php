@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResBank
  *
- * @ORM\Table(name="res_bank", indexes={@ORM\Index(name="res_bank_bic_index", columns={"bic"}), @ORM\Index(name="IDX_9C086DD57C455263", columns={"write_uid"}), @ORM\Index(name="IDX_9C086DD54C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_9C086DD55373C966", columns={"country"}), @ORM\Index(name="IDX_9C086DD5A393D2FB", columns={"state"})})
+ * @ORM\Table(name="res_bank", indexes={@ORM\Index(name="res_bank_bic_index", columns={"bic"}), @ORM\Index(name="IDX_9C086DD5A393D2FB", columns={"state"}), @ORM\Index(name="IDX_9C086DD55373C966", columns={"country"}), @ORM\Index(name="IDX_9C086DD54C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_9C086DD57C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResBank
@@ -100,24 +100,14 @@ class ResBank
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \ResCountryState
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="ResCountryState")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="state", referencedColumnName="id")
      * })
      */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $state;
 
     /**
      * @var \ResCountry
@@ -130,14 +120,24 @@ class ResBank
     private $country;
 
     /**
-     * @var \ResCountryState
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="ResCountryState")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="state", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $state;
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

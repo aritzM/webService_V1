@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrSequence
  *
- * @ORM\Table(name="ir_sequence", indexes={@ORM\Index(name="IDX_28EDCA117C455263", columns={"write_uid"}), @ORM\Index(name="IDX_28EDCA114C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_28EDCA11979B1AD6", columns={"company_id"})})
+ * @ORM\Table(name="ir_sequence", indexes={@ORM\Index(name="IDX_28EDCA11979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_28EDCA114C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_28EDCA117C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrSequence
@@ -107,14 +107,14 @@ class IrSequence
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \ResCompany
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="ResCompany")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $company;
 
     /**
      * @var \ResUsers
@@ -127,14 +127,14 @@ class IrSequence
     private $createUid;
 
     /**
-     * @var \ResCompany
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="ResCompany")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $company;
+    private $writeUid;
 
 
 }

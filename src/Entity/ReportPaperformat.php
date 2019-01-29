@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ReportPaperformat
  *
- * @ORM\Table(name="report_paperformat", indexes={@ORM\Index(name="IDX_66BF582D7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_66BF582D4C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="report_paperformat", indexes={@ORM\Index(name="IDX_66BF582D4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_66BF582D7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ReportPaperformat
@@ -132,20 +132,20 @@ class ReportPaperformat
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

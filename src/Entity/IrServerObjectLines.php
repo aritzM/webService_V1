@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrServerObjectLines
  *
- * @ORM\Table(name="ir_server_object_lines", indexes={@ORM\Index(name="IDX_215838307C455263", columns={"write_uid"}), @ORM\Index(name="IDX_215838304C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_21583830D3CA2F7D", columns={"col1"}), @ORM\Index(name="IDX_215838301844E6B7", columns={"server_id"})})
+ * @ORM\Table(name="ir_server_object_lines", indexes={@ORM\Index(name="IDX_215838301844E6B7", columns={"server_id"}), @ORM\Index(name="IDX_21583830D3CA2F7D", columns={"col1"}), @ORM\Index(name="IDX_215838304C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_215838307C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrServerObjectLines
@@ -51,24 +51,14 @@ class IrServerObjectLines
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrActServer
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrActServer")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="server_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $server;
 
     /**
      * @var \IrModelFields
@@ -81,14 +71,24 @@ class IrServerObjectLines
     private $col1;
 
     /**
-     * @var \IrActServer
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrActServer")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="server_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $server;
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

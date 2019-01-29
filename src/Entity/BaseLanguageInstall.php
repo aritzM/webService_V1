@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BaseLanguageInstall
  *
- * @ORM\Table(name="base_language_install", indexes={@ORM\Index(name="IDX_BF0A07887C455263", columns={"write_uid"}), @ORM\Index(name="IDX_BF0A07884C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="base_language_install", indexes={@ORM\Index(name="IDX_BF0A07884C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_BF0A07887C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class BaseLanguageInstall
@@ -62,20 +62,20 @@ class BaseLanguageInstall
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

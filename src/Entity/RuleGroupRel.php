@@ -23,16 +23,6 @@ class RuleGroupRel
     private $id;
 
     /**
-     * @var \ResGroups
-     *
-     * @ORM\ManyToOne(targetEntity="ResGroups")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="group_id", referencedColumnName="id")
-     * })
-     */
-    private $group;
-
-    /**
      * @var \IrRule
      *
      * @ORM\ManyToOne(targetEntity="IrRule")
@@ -41,6 +31,16 @@ class RuleGroupRel
      * })
      */
     private $ruleGroup;
+
+    /**
+     * @var \ResGroups
+     *
+     * @ORM\ManyToOne(targetEntity="ResGroups")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     * })
+     */
+    private $group;
 
 
 }

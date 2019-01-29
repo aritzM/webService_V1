@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrActions
  *
- * @ORM\Table(name="ir_actions", indexes={@ORM\Index(name="IDX_40F63647C455263", columns={"write_uid"}), @ORM\Index(name="IDX_40F63644C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_40F6364DAC4C9DB", columns={"binding_model_id"})})
+ * @ORM\Table(name="ir_actions", indexes={@ORM\Index(name="IDX_40F6364DAC4C9DB", columns={"binding_model_id"}), @ORM\Index(name="IDX_40F63644C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_40F63647C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrActions
@@ -65,14 +65,14 @@ class IrActions
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrModel
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrModel")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="binding_model_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $bindingModel;
 
     /**
      * @var \ResUsers
@@ -85,14 +85,14 @@ class IrActions
     private $createUid;
 
     /**
-     * @var \IrModel
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrModel")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="binding_model_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $bindingModel;
+    private $writeUid;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrActServer
  *
- * @ORM\Table(name="ir_act_server", indexes={@ORM\Index(name="IDX_E8C600F35DA0FB8", columns={"template_id"}), @ORM\Index(name="IDX_E8C600F37C455263", columns={"write_uid"}), @ORM\Index(name="IDX_E8C600F34C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_E8C600F3DAC4C9DB", columns={"binding_model_id"}), @ORM\Index(name="IDX_E8C600F3899D6779", columns={"link_field_id"}), @ORM\Index(name="IDX_E8C600F392F953EB", columns={"crud_model_id"}), @ORM\Index(name="IDX_E8C600F37975B7E7", columns={"model_id"})})
+ * @ORM\Table(name="ir_act_server", indexes={@ORM\Index(name="IDX_E8C600F37975B7E7", columns={"model_id"}), @ORM\Index(name="IDX_E8C600F392F953EB", columns={"crud_model_id"}), @ORM\Index(name="IDX_E8C600F3899D6779", columns={"link_field_id"}), @ORM\Index(name="IDX_E8C600F3DAC4C9DB", columns={"binding_model_id"}), @ORM\Index(name="IDX_E8C600F34C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_E8C600F37C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrActServer
@@ -100,58 +100,24 @@ class IrActServer
     private $code;
 
     /**
-     * @var string|null
+     * @var \IrModel
      *
-     * @ORM\Column(name="website_path", type="string", nullable=true, options={"comment"="Website Path"})
-     */
-    private $websitePath;
-
-    /**
-     * @var bool|null
-     *
-     * @ORM\Column(name="website_published", type="boolean", nullable=true, options={"comment"="Available on the Website"})
-     */
-    private $websitePublished;
-
-    /**
-     * @var \MailTemplate
-     *
-     * @ORM\ManyToOne(targetEntity="MailTemplate")
+     * @ORM\ManyToOne(targetEntity="IrModel")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="template_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="model_id", referencedColumnName="id")
      * })
      */
-    private $template;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
-     * })
-     */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $model;
 
     /**
      * @var \IrModel
      *
      * @ORM\ManyToOne(targetEntity="IrModel")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="binding_model_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="crud_model_id", referencedColumnName="id")
      * })
      */
-    private $bindingModel;
+    private $crudModel;
 
     /**
      * @var \IrModelFields
@@ -168,20 +134,30 @@ class IrActServer
      *
      * @ORM\ManyToOne(targetEntity="IrModel")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="crud_model_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="binding_model_id", referencedColumnName="id")
      * })
      */
-    private $crudModel;
+    private $bindingModel;
 
     /**
-     * @var \IrModel
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrModel")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $model;
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

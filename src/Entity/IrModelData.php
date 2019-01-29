@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModelData
  *
- * @ORM\Table(name="ir_model_data", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_data_module_name_uniq_index", columns={"module", "name"})}, indexes={@ORM\Index(name="ir_model_data_model_res_id_index", columns={"model", "res_id"}), @ORM\Index(name="IDX_C60B174F7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_C60B174F4C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="ir_model_data", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_data_module_name_uniq_index", columns={"module", "name"})}, indexes={@ORM\Index(name="ir_model_data_model_res_id_index", columns={"model", "res_id"}), @ORM\Index(name="IDX_C60B174F4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_C60B174F7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrModelData
@@ -90,20 +90,20 @@ class IrModelData
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

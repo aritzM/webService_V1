@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResPartnerCategory
  *
- * @ORM\Table(name="res_partner_category", indexes={@ORM\Index(name="res_partner_category_parent_right_index", columns={"parent_right"}), @ORM\Index(name="res_partner_category_parent_left_index", columns={"parent_left"}), @ORM\Index(name="res_partner_category_parent_id_index", columns={"parent_id"}), @ORM\Index(name="IDX_7992F3E77C455263", columns={"write_uid"}), @ORM\Index(name="IDX_7992F3E74C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="res_partner_category", indexes={@ORM\Index(name="res_partner_category_parent_right_index", columns={"parent_right"}), @ORM\Index(name="res_partner_category_parent_id_index", columns={"parent_id"}), @ORM\Index(name="res_partner_category_parent_left_index", columns={"parent_left"}), @ORM\Index(name="IDX_7992F3E74C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_7992F3E77C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResPartnerCategory
@@ -72,14 +72,14 @@ class ResPartnerCategory
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \ResPartnerCategory
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="ResPartnerCategory")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $parent;
 
     /**
      * @var \ResUsers
@@ -92,14 +92,14 @@ class ResPartnerCategory
     private $createUid;
 
     /**
-     * @var \ResPartnerCategory
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="ResPartnerCategory")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $parent;
+    private $writeUid;
 
 
 }

@@ -23,16 +23,6 @@ class IrModelFieldsGroupRel
     private $id;
 
     /**
-     * @var \ResGroups
-     *
-     * @ORM\ManyToOne(targetEntity="ResGroups")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="group_id", referencedColumnName="id")
-     * })
-     */
-    private $group;
-
-    /**
      * @var \IrModelFields
      *
      * @ORM\ManyToOne(targetEntity="IrModelFields")
@@ -41,6 +31,16 @@ class IrModelFieldsGroupRel
      * })
      */
     private $field;
+
+    /**
+     * @var \ResGroups
+     *
+     * @ORM\ManyToOne(targetEntity="ResGroups")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     * })
+     */
+    private $group;
 
 
 }
