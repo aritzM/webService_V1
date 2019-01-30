@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrProperty
  *
- * @ORM\Table(name="ir_property", indexes={@ORM\Index(name="ir_property_name_index", columns={"name"}), @ORM\Index(name="ir_property_company_id_index", columns={"company_id"}), @ORM\Index(name="ir_property_type_index", columns={"type"}), @ORM\Index(name="ir_property_res_id_index", columns={"res_id"}), @ORM\Index(name="ir_property_fields_id_index", columns={"fields_id"}), @ORM\Index(name="IDX_F19901E44C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_F19901E47C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_property", indexes={@ORM\Index(name="ir_property_name_index", columns={"name"}), @ORM\Index(name="ir_property_res_id_index", columns={"res_id"}), @ORM\Index(name="ir_property_fields_id_index", columns={"fields_id"}), @ORM\Index(name="ir_property_type_index", columns={"type"}), @ORM\Index(name="ir_property_company_id_index", columns={"company_id"}), @ORM\Index(name="IDX_F19901E44C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_F19901E47C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrProperty

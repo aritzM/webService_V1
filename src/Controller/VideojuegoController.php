@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Entity\AlmiUsuariosJuego;
 use App\Entity\FosUser;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -74,6 +75,7 @@ class VideojuegoController extends AbstractController
 
         $factory_encoder = new BCryptPasswordEncoder(12);
 
+        $new_game_user = new AlmiUsuariosJuego();
 
         $new_fos_user = new FosUser();
         $new_fos_user->setEmail($request->email);
@@ -90,9 +92,41 @@ class VideojuegoController extends AbstractController
         $entityManager->persist($new_fos_user);
         $entityManager->flush();
 
+
+
         $parametros['insertado'] = true;
 
         return $this->enviar($parametros);
+    }
+
+
+    /**
+     * @Route("/ws/info", name="wsinfo", methods={"POST"})
+     */
+    public function usuario()
+    {
+
+        $datos = file_get_contents('php://input');
+        $request = json_decode($datos);
+
+        $idUsu = $request->id;
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $info_usu = $entityManager->getRepository(AlmiUsuariosJuego::class)->find(1);
+
+        $usu = array();
+
+        $usu[] = array(
+           'name' => $info_usu->getName(),
+           'apellido' =>$info_usu->getApellido(),
+           'usuario' =>$info_usu->getUsuario(),
+           'passwd' =>$info_usu->getPasswd(),
+           'vitorioa' =>$info_usu->getVictoria(),
+           'derrota'=>$info_usu->getDerrota());
+
+        $parametro = array('usuario'=>$usu);
+        return $this->enviar($parametro);
+
     }
 
     public function enviar($user){
@@ -101,4 +135,6 @@ class VideojuegoController extends AbstractController
         $response->setData(array('userID' =>$user));
         return $response;
     }
+
+
 }

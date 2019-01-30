@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrUiMenu
  *
- * @ORM\Table(name="ir_ui_menu", indexes={@ORM\Index(name="ir_ui_menu_parent_right_index", columns={"parent_right"}), @ORM\Index(name="ir_ui_menu_parent_left_index", columns={"parent_left"}), @ORM\Index(name="ir_ui_menu_parent_id_index", columns={"parent_id"}), @ORM\Index(name="IDX_EB82517E4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_EB82517E7C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_ui_menu", indexes={@ORM\Index(name="ir_ui_menu_parent_left_index", columns={"parent_left"}), @ORM\Index(name="ir_ui_menu_parent_right_index", columns={"parent_right"}), @ORM\Index(name="ir_ui_menu_parent_id_index", columns={"parent_id"}), @ORM\Index(name="IDX_EB82517E4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_EB82517E7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrUiMenu

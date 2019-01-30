@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResPartnerCategory
  *
- * @ORM\Table(name="res_partner_category", indexes={@ORM\Index(name="res_partner_category_parent_right_index", columns={"parent_right"}), @ORM\Index(name="res_partner_category_parent_id_index", columns={"parent_id"}), @ORM\Index(name="res_partner_category_parent_left_index", columns={"parent_left"}), @ORM\Index(name="IDX_7992F3E74C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_7992F3E77C455263", columns={"write_uid"})})
+ * @ORM\Table(name="res_partner_category", indexes={@ORM\Index(name="res_partner_category_parent_right_index", columns={"parent_right"}), @ORM\Index(name="res_partner_category_parent_left_index", columns={"parent_left"}), @ORM\Index(name="res_partner_category_parent_id_index", columns={"parent_id"}), @ORM\Index(name="IDX_7992F3E74C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_7992F3E77C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResPartnerCategory

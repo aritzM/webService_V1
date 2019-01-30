@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrUiView
  *
- * @ORM\Table(name="ir_ui_view", indexes={@ORM\Index(name="ir_ui_view_model_type_inherit_id", columns={"model", "inherit_id"}), @ORM\Index(name="ir_ui_view_model_index", columns={"model"}), @ORM\Index(name="ir_ui_view_inherit_id_index", columns={"inherit_id"}), @ORM\Index(name="IDX_687AC0634C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_687AC0637C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_ui_view", indexes={@ORM\Index(name="ir_ui_view_inherit_id_index", columns={"inherit_id"}), @ORM\Index(name="ir_ui_view_model_type_inherit_id", columns={"model", "inherit_id"}), @ORM\Index(name="ir_ui_view_model_index", columns={"model"}), @ORM\Index(name="IDX_687AC0634C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_687AC0637C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrUiView

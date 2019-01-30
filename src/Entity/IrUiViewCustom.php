@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrUiViewCustom
  *
- * @ORM\Table(name="ir_ui_view_custom", indexes={@ORM\Index(name="ir_ui_view_custom_ref_id_index", columns={"ref_id"}), @ORM\Index(name="ir_ui_view_custom_user_id_ref_id", columns={"user_id", "ref_id"}), @ORM\Index(name="ir_ui_view_custom_user_id_index", columns={"user_id"}), @ORM\Index(name="IDX_EAF19E564C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_EAF19E567C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_ui_view_custom", indexes={@ORM\Index(name="ir_ui_view_custom_user_id_ref_id", columns={"user_id", "ref_id"}), @ORM\Index(name="ir_ui_view_custom_user_id_index", columns={"user_id"}), @ORM\Index(name="ir_ui_view_custom_ref_id_index", columns={"ref_id"}), @ORM\Index(name="IDX_EAF19E564C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_EAF19E567C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrUiViewCustom

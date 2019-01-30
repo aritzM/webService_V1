@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrDefault
  *
- * @ORM\Table(name="ir_default", indexes={@ORM\Index(name="ir_default_field_id_index", columns={"field_id"}), @ORM\Index(name="ir_default_user_id_index", columns={"user_id"}), @ORM\Index(name="ir_default_company_id_index", columns={"company_id"}), @ORM\Index(name="IDX_E21992544C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_E21992547C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_default", indexes={@ORM\Index(name="ir_default_user_id_index", columns={"user_id"}), @ORM\Index(name="ir_default_company_id_index", columns={"company_id"}), @ORM\Index(name="ir_default_field_id_index", columns={"field_id"}), @ORM\Index(name="IDX_E21992544C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_E21992547C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrDefault
