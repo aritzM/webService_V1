@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrConfigParameter
  *
- * @ORM\Table(name="ir_config_parameter", uniqueConstraints={@ORM\UniqueConstraint(name="ir_config_parameter_key_uniq", columns={"key"})}, indexes={@ORM\Index(name="ir_config_parameter_key_index", columns={"key"}), @ORM\Index(name="IDX_881413614C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_881413617C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_config_parameter", uniqueConstraints={@ORM\UniqueConstraint(name="ir_config_parameter_key_uniq", columns={"key"})}, indexes={@ORM\Index(name="IDX_881413614C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_881413617C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrConfigParameter

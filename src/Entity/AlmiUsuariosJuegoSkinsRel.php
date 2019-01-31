@@ -42,53 +42,5 @@ class AlmiUsuariosJuegoSkinsRel
      */
     private $almiUsuariosJuego;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return \AlmiSkinsJuego
-     */
-    public function getAlmiSkinsJuego(): \AlmiSkinsJuego
-    {
-        return $this->almiSkinsJuego;
-    }
-
-    /**
-     * @param \AlmiSkinsJuego $almiSkinsJuego
-     */
-    public function setAlmiSkinsJuego(\AlmiSkinsJuego $almiSkinsJuego)
-    {
-        $this->almiSkinsJuego = $almiSkinsJuego;
-    }
-
-    /**
-     * @return \AlmiUsuariosJuego
-     */
-    public function getAlmiUsuariosJuego(): \AlmiUsuariosJuego
-    {
-        return $this->almiUsuariosJuego;
-    }
-
-    /**
-     * @param \AlmiUsuariosJuego $almiUsuariosJuego
-     */
-    public function setAlmiUsuariosJuego(\AlmiUsuariosJuego $almiUsuariosJuego)
-    {
-        $this->almiUsuariosJuego = $almiUsuariosJuego;
-    }
-
 
 }
