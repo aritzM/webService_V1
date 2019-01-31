@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Entity\AlmiUsuariosJuego;
 use App\Entity\FosUser;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,16 +49,22 @@ class VideojuegoController extends AbstractController
             if($user_query->getUsername() == $username){
 
                 $plain_password = $factory_encoder->isPasswordValid($user_query->getPassword(),$password_url,$user_query->getSalt());
-                //var_dump($plain_password);
-                //var_dump($user_query->getPassword());
-                //die();
 
                 if ($user_query->getPassword() == $plain_password){
 
-                    $user = $user_query->getId();
+                    $user = array('userID' =>$user_query->getId());
+                    break;
+                }else{
+
+                    $user = array('error' => "Usuario o contraseña no valido");
 
                 }
+
+            }else{
+                $user = array('error' => "Usuario o contraseña incorrectos");
+
             }
+
         }
 
         return $this->enviar($user);
@@ -74,8 +81,8 @@ class VideojuegoController extends AbstractController
 
         $factory_encoder = new BCryptPasswordEncoder(12);
 
-
         $new_fos_user = new FosUser();
+
         $new_fos_user->setEmail($request->email);
         $new_fos_user->setUsername($request->username);
         $new_fos_user->setEnabled(true);
@@ -90,15 +97,74 @@ class VideojuegoController extends AbstractController
         $entityManager->persist($new_fos_user);
         $entityManager->flush();
 
+
+        $this->createUserGame($request->username, $request->password);
         $parametros['insertado'] = true;
 
         return $this->enviar($parametros);
     }
 
-    public function enviar($user){
+    protected function createUserGame($user, $password){
+
+        $new_game_user = new AlmiUsuariosJuego();
+        $new_game_user->setUsuario($user);
+        $new_game_user->setPasswd($password);
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $idFosUser = $entityManager->getRepository(FosUser::class)->findAll();
+
+        foreach ($idFosUser as $id){
+
+            if ($id->getUsername() == $user){
+
+                $id_insert = $id->getId();
+
+                $new_game_user->setFosuser($id_insert);
+            }
+
+        }
+
+
+        $entityManager1 = $this->getDoctrine()->getManager();
+        $entityManager1->persist($new_game_user);
+        $entityManager1->flush();
+    }
+    /**
+     * @Route("/ws/info", name="wsinfo", methods={"POST"})
+     */
+    public function usuario()
+    {
+
+        $datos = file_get_contents('php://input');
+        $request = json_decode($datos);
+
+        $idUsu = $request->id;
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $info_usu = $entityManager->getRepository(AlmiUsuariosJuego::class)->find($idUsu);
+
+        $usu = array();
+
+        $usu[] = array(
+           'name' => $info_usu->getName(),
+           'apellido' =>$info_usu->getApellido(),
+           'usuario' =>$info_usu->getUsuario(),
+           'passwd' =>$info_usu->getPasswd(),
+           'vitorioa' =>$info_usu->getVictoria(),
+           'derrota'=>$info_usu->getDerrota());
+
+        $parametro = array('usuario'=>$usu);
+        return $this->enviar($parametro);
+
+    }
+
+    public function enviar($parametros){
         $response = new JsonResponse();
         $response->setStatusCode(200);
-        $response->setData(array('userID' =>$user));
+        $response->setData($parametros);
         return $response;
     }
+
+
 }

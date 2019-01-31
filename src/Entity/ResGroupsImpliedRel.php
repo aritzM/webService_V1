@@ -27,20 +27,20 @@ class ResGroupsImpliedRel
      *
      * @ORM\ManyToOne(targetEntity="ResGroups")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="hid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="gid", referencedColumnName="id")
      * })
      */
-    private $hid;
+    private $gid;
 
     /**
      * @var \ResGroups
      *
      * @ORM\ManyToOne(targetEntity="ResGroups")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="gid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="hid", referencedColumnName="id")
      * })
      */
-    private $gid;
+    private $hid;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * AlmiUsuariosJuegoSkinsRel
  *
- * @ORM\Table(name="almi_usuarios_juego_skins_rel", uniqueConstraints={@ORM\UniqueConstraint(name="almi_usuarios_juego_skins_rel_almi_skins_juego_id_almi_usua_key", columns={"almi_skins_juego_id", "almi_usuarios_juego_id"})}, indexes={@ORM\Index(name="almi_usuarios_juego_skins_rel_almi_usuarios_juego_id_idx", columns={"almi_usuarios_juego_id"}), @ORM\Index(name="almi_usuarios_juego_skins_rel_almi_skins_juego_id_idx", columns={"almi_skins_juego_id"})})
+ * @ORM\Table(name="almi_usuarios_juego_skins_rel", uniqueConstraints={@ORM\UniqueConstraint(name="almi_usuarios_juego_skins_rel_almi_skins_juego_id_almi_usua_key", columns={"almi_skins_juego_id", "almi_usuarios_juego_id"})}, indexes={@ORM\Index(name="almi_usuarios_juego_skins_rel_almi_skins_juego_id_idx", columns={"almi_skins_juego_id"}), @ORM\Index(name="almi_usuarios_juego_skins_rel_almi_usuarios_juego_id_idx", columns={"almi_usuarios_juego_id"})})
  * @ORM\Entity
  */
 class AlmiUsuariosJuegoSkinsRel
@@ -23,16 +23,6 @@ class AlmiUsuariosJuegoSkinsRel
     private $id;
 
     /**
-     * @var \AlmiUsuariosJuego
-     *
-     * @ORM\ManyToOne(targetEntity="AlmiUsuariosJuego")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="almi_usuarios_juego_id", referencedColumnName="id")
-     * })
-     */
-    private $almiUsuariosJuego;
-
-    /**
      * @var \AlmiSkinsJuego
      *
      * @ORM\ManyToOne(targetEntity="AlmiSkinsJuego")
@@ -41,6 +31,16 @@ class AlmiUsuariosJuegoSkinsRel
      * })
      */
     private $almiSkinsJuego;
+
+    /**
+     * @var \AlmiUsuariosJuego
+     *
+     * @ORM\ManyToOne(targetEntity="AlmiUsuariosJuego")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="almi_usuarios_juego_id", referencedColumnName="id")
+     * })
+     */
+    private $almiUsuariosJuego;
 
 
 }

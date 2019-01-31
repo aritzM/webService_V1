@@ -23,16 +23,6 @@ class ResCountryResCountryGroupRel
     private $id;
 
     /**
-     * @var \ResCountryGroup
-     *
-     * @ORM\ManyToOne(targetEntity="ResCountryGroup")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="res_country_group_id", referencedColumnName="id")
-     * })
-     */
-    private $resCountryGroup;
-
-    /**
      * @var \ResCountry
      *
      * @ORM\ManyToOne(targetEntity="ResCountry")
@@ -41,6 +31,16 @@ class ResCountryResCountryGroupRel
      * })
      */
     private $resCountry;
+
+    /**
+     * @var \ResCountryGroup
+     *
+     * @ORM\ManyToOne(targetEntity="ResCountryGroup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="res_country_group_id", referencedColumnName="id")
+     * })
+     */
+    private $resCountryGroup;
 
 
 }

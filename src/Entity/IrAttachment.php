@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrAttachment
  *
- * @ORM\Table(name="ir_attachment", indexes={@ORM\Index(name="ir_attachment_checksum_index", columns={"checksum"}), @ORM\Index(name="ir_attachment_url_index", columns={"url"}), @ORM\Index(name="ir_attachment_res_idx", columns={"res_model", "res_id"}), @ORM\Index(name="IDX_3FF011707C455263", columns={"write_uid"}), @ORM\Index(name="IDX_3FF01170979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_3FF011704C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="ir_attachment", indexes={@ORM\Index(name="ir_attachment_checksum_index", columns={"checksum"}), @ORM\Index(name="ir_attachment_res_idx", columns={"res_model", "res_id"}), @ORM\Index(name="ir_attachment_url_index", columns={"url"}), @ORM\Index(name="IDX_3FF011704C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_3FF01170979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_3FF011707C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrAttachment
@@ -160,10 +160,10 @@ class IrAttachment
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResCompany
@@ -180,10 +180,10 @@ class IrAttachment
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

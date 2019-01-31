@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BaseImportTestsModelsCharRequired
  *
- * @ORM\Table(name="base_import_tests_models_char_required", indexes={@ORM\Index(name="IDX_C17A22737C455263", columns={"write_uid"}), @ORM\Index(name="IDX_C17A22734C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="base_import_tests_models_char_required", indexes={@ORM\Index(name="IDX_C17A22734C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_C17A22737C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class BaseImportTestsModelsCharRequired
@@ -48,20 +48,20 @@ class BaseImportTestsModelsCharRequired
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResGroups
  *
- * @ORM\Table(name="res_groups", uniqueConstraints={@ORM\UniqueConstraint(name="res_groups_name_uniq", columns={"category_id", "name"})}, indexes={@ORM\Index(name="res_groups_category_id_index", columns={"category_id"}), @ORM\Index(name="IDX_B12F6EC67C455263", columns={"write_uid"}), @ORM\Index(name="IDX_B12F6EC64C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="res_groups", uniqueConstraints={@ORM\UniqueConstraint(name="res_groups_name_uniq", columns={"category_id", "name"})}, indexes={@ORM\Index(name="res_groups_category_id_index", columns={"category_id"}), @ORM\Index(name="IDX_B12F6EC64C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_B12F6EC67C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResGroups
@@ -72,14 +72,14 @@ class ResGroups
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrModuleCategory
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrModuleCategory")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $category;
 
     /**
      * @var \ResUsers
@@ -92,14 +92,14 @@ class ResGroups
     private $createUid;
 
     /**
-     * @var \IrModuleCategory
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrModuleCategory")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $category;
+    private $writeUid;
 
 
 }

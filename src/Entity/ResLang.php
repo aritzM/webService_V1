@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResLang
  *
- * @ORM\Table(name="res_lang", uniqueConstraints={@ORM\UniqueConstraint(name="res_lang_name_uniq", columns={"name"}), @ORM\UniqueConstraint(name="res_lang_code_uniq", columns={"code"})}, indexes={@ORM\Index(name="IDX_756156CD7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_756156CD4C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="res_lang", uniqueConstraints={@ORM\UniqueConstraint(name="res_lang_name_uniq", columns={"name"}), @ORM\UniqueConstraint(name="res_lang_code_uniq", columns={"code"})}, indexes={@ORM\Index(name="IDX_756156CD4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_756156CD7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResLang
@@ -118,20 +118,20 @@ class ResLang
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

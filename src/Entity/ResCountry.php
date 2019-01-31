@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResCountry
  *
- * @ORM\Table(name="res_country", uniqueConstraints={@ORM\UniqueConstraint(name="res_country_code_uniq", columns={"code"}), @ORM\UniqueConstraint(name="res_country_name_uniq", columns={"name"})}, indexes={@ORM\Index(name="IDX_71309D887C455263", columns={"write_uid"}), @ORM\Index(name="IDX_71309D884C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_71309D8838248176", columns={"currency_id"}), @ORM\Index(name="IDX_71309D8858F0EF5F", columns={"address_view_id"})})
+ * @ORM\Table(name="res_country", uniqueConstraints={@ORM\UniqueConstraint(name="res_country_code_uniq", columns={"code"}), @ORM\UniqueConstraint(name="res_country_name_uniq", columns={"name"})}, indexes={@ORM\Index(name="IDX_71309D8858F0EF5F", columns={"address_view_id"}), @ORM\Index(name="IDX_71309D8838248176", columns={"currency_id"}), @ORM\Index(name="IDX_71309D884C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_71309D887C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResCountry
@@ -79,24 +79,14 @@ class ResCountry
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrUiView
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrUiView")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="address_view_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $addressView;
 
     /**
      * @var \ResCurrency
@@ -109,14 +99,24 @@ class ResCountry
     private $currency;
 
     /**
-     * @var \IrUiView
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrUiView")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="address_view_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $addressView;
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

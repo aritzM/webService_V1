@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BaseModuleUninstall
  *
- * @ORM\Table(name="base_module_uninstall", indexes={@ORM\Index(name="IDX_459630D77C455263", columns={"write_uid"}), @ORM\Index(name="IDX_459630D74C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_459630D7AFC2B591", columns={"module_id"})})
+ * @ORM\Table(name="base_module_uninstall", indexes={@ORM\Index(name="IDX_459630D7AFC2B591", columns={"module_id"}), @ORM\Index(name="IDX_459630D74C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_459630D77C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class BaseModuleUninstall
@@ -44,14 +44,14 @@ class BaseModuleUninstall
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrModuleModule
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrModuleModule")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $module;
 
     /**
      * @var \ResUsers
@@ -64,14 +64,14 @@ class BaseModuleUninstall
     private $createUid;
 
     /**
-     * @var \IrModuleModule
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrModuleModule")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $module;
+    private $writeUid;
 
 
 }

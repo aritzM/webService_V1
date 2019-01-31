@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * WebEditorConverterTest
  *
- * @ORM\Table(name="web_editor_converter_test", indexes={@ORM\Index(name="IDX_CD3222057C455263", columns={"write_uid"}), @ORM\Index(name="IDX_CD3222054C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_CD3222051A3EAE0F", columns={"many2one"})})
+ * @ORM\Table(name="web_editor_converter_test", indexes={@ORM\Index(name="IDX_CD3222051A3EAE0F", columns={"many2one"}), @ORM\Index(name="IDX_CD3222054C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_CD3222057C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class WebEditorConverterTest
@@ -114,14 +114,14 @@ class WebEditorConverterTest
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \WebEditorConverterTestSub
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="WebEditorConverterTestSub")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="many2one", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $many2one;
 
     /**
      * @var \ResUsers
@@ -134,14 +134,14 @@ class WebEditorConverterTest
     private $createUid;
 
     /**
-     * @var \WebEditorConverterTestSub
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="WebEditorConverterTestSub")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="many2one", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $many2one;
+    private $writeUid;
 
 
 }

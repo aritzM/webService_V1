@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrUiMenu
  *
- * @ORM\Table(name="ir_ui_menu", indexes={@ORM\Index(name="ir_ui_menu_parent_id_index", columns={"parent_id"}), @ORM\Index(name="ir_ui_menu_parent_left_index", columns={"parent_left"}), @ORM\Index(name="ir_ui_menu_parent_right_index", columns={"parent_right"}), @ORM\Index(name="IDX_EB82517E7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_EB82517E4C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="ir_ui_menu", indexes={@ORM\Index(name="ir_ui_menu_parent_left_index", columns={"parent_left"}), @ORM\Index(name="ir_ui_menu_parent_right_index", columns={"parent_right"}), @ORM\Index(name="ir_ui_menu_parent_id_index", columns={"parent_id"}), @ORM\Index(name="IDX_EB82517E4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_EB82517E7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrUiMenu
@@ -86,14 +86,14 @@ class IrUiMenu
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrUiMenu
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrUiMenu")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $parent;
 
     /**
      * @var \ResUsers
@@ -106,14 +106,14 @@ class IrUiMenu
     private $createUid;
 
     /**
-     * @var \IrUiMenu
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrUiMenu")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $parent;
+    private $writeUid;
 
 
 }

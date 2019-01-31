@@ -2,22 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: root
- * Date: 24/01/19
- * Time: 14:00
+ * Date: 30/01/19
+ * Time: 12:00
  */
 
 namespace App\Repository;
 
-use App\Entity\FosUser;
+use App\Entity\AlmiUsuariosJuego;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 
-class UserRepository extends ServiceEntityRepository
+class UsuariosJuegoRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, FosUser::class);
+        parent::__construct($registry, AlmiUsuariosJuego::class);
     }
 
     public function findAllByName($nombre): array
@@ -26,7 +26,7 @@ class UserRepository extends ServiceEntityRepository
 
 
         $query = $entityManager->createQuery(
-            "SELECT al FROM App\Entity\FosUser al
+            "SELECT al FROM App\Entity\AlmiUsuariosJuego al
         WHERE al.name like :nombre
                 ORDER BY al.name ASC"
         )->setParameter('nombre', '%'.$nombre.'%');

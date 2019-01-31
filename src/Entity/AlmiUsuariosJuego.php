@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * AlmiUsuariosJuego
  *
- * @ORM\Table(name="almi_usuarios_juego", indexes={@ORM\Index(name="IDX_9B44573C7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_9B44573C4C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="almi_usuarios_juego", indexes={@ORM\Index(name="IDX_9B44573C4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_9B44573C7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class AlmiUsuariosJuego
@@ -86,14 +86,11 @@ class AlmiUsuariosJuego
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var string|null
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="fosuser", type="string", nullable=true, options={"comment"="fosuser"})
      */
-    private $writeUid;
+    private $fosuser;
 
     /**
      * @var \ResUsers
@@ -104,6 +101,102 @@ class AlmiUsuariosJuego
      * })
      */
     private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+
+    public function getApellido()
+    {
+        return $this->apellido;
+    }
+
+    public function setApellido($apellido)
+    {
+        $this->apellido = $apellido;
+    }
+
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+    }
+
+    public function getPasswd()
+    {
+        return $this->passwd;
+    }
+
+    public function setPasswd($passwd)
+    {
+        $this->passwd = $passwd;
+    }
+
+    public function getVictoria()
+    {
+        return $this->victoria;
+    }
+
+    public function setVictoria($victoria)
+    {
+        $this->victoria = $victoria;
+    }
+
+    public function getDerrota()
+    {
+        return $this->derrota;
+    }
+
+    public function setDerrota($derrota)
+    {
+        $this->derrota = $derrota;
+    }
+
+    public function getDinero()
+    {
+        return $this->dinero;
+    }
+
+    public function setDinero($dinero)
+    {
+        $this->dinero = $dinero;
+    }
+
+    public function getFosuser()
+    {
+        return $this->fosuser;
+    }
+
+    public function setFosuser($fosuser)
+    {
+        $this->fosuser = $fosuser;
+    }
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrActReportXml
  *
- * @ORM\Table(name="ir_act_report_xml", indexes={@ORM\Index(name="IDX_150F108F7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_150F108F4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_150F108FDAC4C9DB", columns={"binding_model_id"}), @ORM\Index(name="IDX_150F108F2FE4C5D9", columns={"paperformat_id"})})
+ * @ORM\Table(name="ir_act_report_xml", indexes={@ORM\Index(name="IDX_150F108F2FE4C5D9", columns={"paperformat_id"}), @ORM\Index(name="IDX_150F108FDAC4C9DB", columns={"binding_model_id"}), @ORM\Index(name="IDX_150F108F4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_150F108F7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrActReportXml
@@ -121,24 +121,14 @@ class IrActReportXml
     private $attachment;
 
     /**
-     * @var \ResUsers
+     * @var \ReportPaperformat
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="ReportPaperformat")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="paperformat_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $paperformat;
 
     /**
      * @var \IrModel
@@ -151,14 +141,24 @@ class IrActReportXml
     private $bindingModel;
 
     /**
-     * @var \ReportPaperformat
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="ReportPaperformat")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="paperformat_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $paperformat;
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

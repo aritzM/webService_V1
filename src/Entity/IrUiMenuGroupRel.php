@@ -23,16 +23,6 @@ class IrUiMenuGroupRel
     private $id;
 
     /**
-     * @var \ResGroups
-     *
-     * @ORM\ManyToOne(targetEntity="ResGroups")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="gid", referencedColumnName="id")
-     * })
-     */
-    private $gid;
-
-    /**
      * @var \IrUiMenu
      *
      * @ORM\ManyToOne(targetEntity="IrUiMenu")
@@ -41,6 +31,16 @@ class IrUiMenuGroupRel
      * })
      */
     private $menu;
+
+    /**
+     * @var \ResGroups
+     *
+     * @ORM\ManyToOne(targetEntity="ResGroups")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="gid", referencedColumnName="id")
+     * })
+     */
+    private $gid;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * WizardIrModelMenuCreate
  *
- * @ORM\Table(name="wizard_ir_model_menu_create", indexes={@ORM\Index(name="IDX_83B8C8597C455263", columns={"write_uid"}), @ORM\Index(name="IDX_83B8C8594C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_83B8C859CCD7E912", columns={"menu_id"})})
+ * @ORM\Table(name="wizard_ir_model_menu_create", indexes={@ORM\Index(name="IDX_83B8C859CCD7E912", columns={"menu_id"}), @ORM\Index(name="IDX_83B8C8594C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_83B8C8597C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class WizardIrModelMenuCreate
@@ -44,14 +44,14 @@ class WizardIrModelMenuCreate
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \IrUiMenu
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="IrUiMenu")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="menu_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $menu;
 
     /**
      * @var \ResUsers
@@ -64,14 +64,14 @@ class WizardIrModelMenuCreate
     private $createUid;
 
     /**
-     * @var \IrUiMenu
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="IrUiMenu")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="menu_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $menu;
+    private $writeUid;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResCurrencyRate
  *
- * @ORM\Table(name="res_currency_rate", uniqueConstraints={@ORM\UniqueConstraint(name="res_currency_rate_unique_name_per_day", columns={"name", "currency_id", "company_id"})}, indexes={@ORM\Index(name="res_currency_rate_name_index", columns={"name"}), @ORM\Index(name="IDX_6EE0AE97C455263", columns={"write_uid"}), @ORM\Index(name="IDX_6EE0AE94C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_6EE0AE9979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_6EE0AE938248176", columns={"currency_id"})})
+ * @ORM\Table(name="res_currency_rate", uniqueConstraints={@ORM\UniqueConstraint(name="res_currency_rate_unique_name_per_day", columns={"name", "currency_id", "company_id"})}, indexes={@ORM\Index(name="res_currency_rate_name_index", columns={"name"}), @ORM\Index(name="IDX_6EE0AE938248176", columns={"currency_id"}), @ORM\Index(name="IDX_6EE0AE9979B1AD6", columns={"company_id"}), @ORM\Index(name="IDX_6EE0AE94C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_6EE0AE97C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResCurrencyRate
@@ -51,24 +51,14 @@ class ResCurrencyRate
     private $writeDate;
 
     /**
-     * @var \ResUsers
+     * @var \ResCurrency
      *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\ManyToOne(targetEntity="ResCurrency")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
      * })
      */
-    private $writeUid;
-
-    /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
-     * })
-     */
-    private $createUid;
+    private $currency;
 
     /**
      * @var \ResCompany
@@ -81,14 +71,24 @@ class ResCurrencyRate
     private $company;
 
     /**
-     * @var \ResCurrency
+     * @var \ResUsers
      *
-     * @ORM\ManyToOne(targetEntity="ResCurrency")
+     * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $currency;
+    private $createUid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     * })
+     */
+    private $writeUid;
 
 
 }

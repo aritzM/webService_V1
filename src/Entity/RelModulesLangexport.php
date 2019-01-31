@@ -23,16 +23,6 @@ class RelModulesLangexport
     private $id;
 
     /**
-     * @var \IrModuleModule
-     *
-     * @ORM\ManyToOne(targetEntity="IrModuleModule")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
-     * })
-     */
-    private $module;
-
-    /**
      * @var \BaseLanguageExport
      *
      * @ORM\ManyToOne(targetEntity="BaseLanguageExport")
@@ -41,6 +31,16 @@ class RelModulesLangexport
      * })
      */
     private $wiz;
+
+    /**
+     * @var \IrModuleModule
+     *
+     * @ORM\ManyToOne(targetEntity="IrModuleModule")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
+     * })
+     */
+    private $module;
 
 
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResCountryGroup
  *
- * @ORM\Table(name="res_country_group", indexes={@ORM\Index(name="IDX_9995278B7C455263", columns={"write_uid"}), @ORM\Index(name="IDX_9995278B4C10A2D2", columns={"create_uid"})})
+ * @ORM\Table(name="res_country_group", indexes={@ORM\Index(name="IDX_9995278B4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_9995278B7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResCountryGroup
@@ -48,20 +48,20 @@ class ResCountryGroup
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
      * })
      */
-    private $writeUid;
+    private $createUid;
 
     /**
      * @var \ResUsers
      *
      * @ORM\ManyToOne(targetEntity="ResUsers")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="create_uid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="write_uid", referencedColumnName="id")
      * })
      */
-    private $createUid;
+    private $writeUid;
 
 
 }

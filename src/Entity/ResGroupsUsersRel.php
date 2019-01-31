@@ -23,16 +23,6 @@ class ResGroupsUsersRel
     private $id;
 
     /**
-     * @var \ResUsers
-     *
-     * @ORM\ManyToOne(targetEntity="ResUsers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="uid", referencedColumnName="id")
-     * })
-     */
-    private $uid;
-
-    /**
      * @var \ResGroups
      *
      * @ORM\ManyToOne(targetEntity="ResGroups")
@@ -41,6 +31,16 @@ class ResGroupsUsersRel
      * })
      */
     private $gid;
+
+    /**
+     * @var \ResUsers
+     *
+     * @ORM\ManyToOne(targetEntity="ResUsers")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="uid", referencedColumnName="id")
+     * })
+     */
+    private $uid;
 
 
 }
