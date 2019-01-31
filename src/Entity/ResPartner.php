@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResPartner
  *
- * @ORM\Table(name="res_partner", indexes={@ORM\Index(name="res_partner_name_index", columns={"name"}), @ORM\Index(name="res_partner_ref_index", columns={"ref"}), @ORM\Index(name="res_partner_display_name_index", columns={"display_name"}), @ORM\Index(name="res_partner_commercial_partner_id_index", columns={"commercial_partner_id"}), @ORM\Index(name="res_partner_parent_id_index", columns={"parent_id"}), @ORM\Index(name="res_partner_date_index", columns={"date"}), @ORM\Index(name="res_partner_company_id_index", columns={"company_id"}), @ORM\Index(name="IDX_13686AF85D83CC1", columns={"state_id"}), @ORM\Index(name="IDX_13686AF8F92F3E70", columns={"country_id"}), @ORM\Index(name="IDX_13686AF82B36786B", columns={"title"}), @ORM\Index(name="IDX_13686AF8A76ED395", columns={"user_id"}), @ORM\Index(name="IDX_13686AF82B19A734", columns={"industry_id"}), @ORM\Index(name="IDX_13686AF8730F10D1", columns={"commercial_partner_country_id"}), @ORM\Index(name="IDX_13686AF84C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_13686AF87C455263", columns={"write_uid"})})
+ * @ORM\Table(name="res_partner", indexes={@ORM\Index(name="res_partner_display_name_index", columns={"display_name"}), @ORM\Index(name="res_partner_company_id_index", columns={"company_id"}), @ORM\Index(name="res_partner_commercial_partner_id_index", columns={"commercial_partner_id"}), @ORM\Index(name="res_partner_parent_id_index", columns={"parent_id"}), @ORM\Index(name="res_partner_date_index", columns={"date"}), @ORM\Index(name="res_partner_ref_index", columns={"ref"}), @ORM\Index(name="res_partner_name_index", columns={"name"}), @ORM\Index(name="IDX_13686AF82B36786B", columns={"title"}), @ORM\Index(name="IDX_13686AF8A76ED395", columns={"user_id"}), @ORM\Index(name="IDX_13686AF85D83CC1", columns={"state_id"}), @ORM\Index(name="IDX_13686AF8F92F3E70", columns={"country_id"}), @ORM\Index(name="IDX_13686AF82B19A734", columns={"industry_id"}), @ORM\Index(name="IDX_13686AF8730F10D1", columns={"commercial_partner_country_id"}), @ORM\Index(name="IDX_13686AF84C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_13686AF87C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResPartner
@@ -240,26 +240,6 @@ class ResPartner
     private $writeDate;
 
     /**
-     * @var \ResCountryState
-     *
-     * @ORM\ManyToOne(targetEntity="ResCountryState")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="state_id", referencedColumnName="id")
-     * })
-     */
-    private $state;
-
-    /**
-     * @var \ResCountry
-     *
-     * @ORM\ManyToOne(targetEntity="ResCountry")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
-     * })
-     */
-    private $country;
-
-    /**
      * @var \ResPartnerTitle
      *
      * @ORM\ManyToOne(targetEntity="ResPartnerTitle")
@@ -288,6 +268,26 @@ class ResPartner
      * })
      */
     private $user;
+
+    /**
+     * @var \ResCountryState
+     *
+     * @ORM\ManyToOne(targetEntity="ResCountryState")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="state_id", referencedColumnName="id")
+     * })
+     */
+    private $state;
+
+    /**
+     * @var \ResCountry
+     *
+     * @ORM\ManyToOne(targetEntity="ResCountry")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * })
+     */
+    private $country;
 
     /**
      * @var \ResPartnerIndustry

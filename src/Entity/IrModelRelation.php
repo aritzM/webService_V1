@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModelRelation
  *
- * @ORM\Table(name="ir_model_relation", indexes={@ORM\Index(name="ir_model_relation_name_index", columns={"name"}), @ORM\Index(name="ir_model_relation_model_index", columns={"model"}), @ORM\Index(name="ir_model_relation_module_index", columns={"module"}), @ORM\Index(name="IDX_2083FCD64C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_2083FCD67C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_model_relation", indexes={@ORM\Index(name="ir_model_relation_module_index", columns={"module"}), @ORM\Index(name="ir_model_relation_name_index", columns={"name"}), @ORM\Index(name="ir_model_relation_model_index", columns={"model"}), @ORM\Index(name="IDX_2083FCD64C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_2083FCD67C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrModelRelation

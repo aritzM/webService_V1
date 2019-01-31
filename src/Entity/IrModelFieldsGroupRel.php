@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModelFieldsGroupRel
  *
- * @ORM\Table(name="ir_model_fields_group_rel", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_fields_group_rel_field_id_group_id_key", columns={"field_id", "group_id"})}, indexes={@ORM\Index(name="ir_model_fields_group_rel_field_id_idx", columns={"field_id"}), @ORM\Index(name="ir_model_fields_group_rel_group_id_idx", columns={"group_id"})})
+ * @ORM\Table(name="ir_model_fields_group_rel", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_fields_group_rel_field_id_group_id_key", columns={"field_id", "group_id"})}, indexes={@ORM\Index(name="ir_model_fields_group_rel_group_id_idx", columns={"group_id"}), @ORM\Index(name="ir_model_fields_group_rel_field_id_idx", columns={"field_id"})})
  * @ORM\Entity
  */
 class IrModelFieldsGroupRel

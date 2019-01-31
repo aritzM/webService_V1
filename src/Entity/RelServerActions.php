@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * RelServerActions
  *
- * @ORM\Table(name="rel_server_actions", uniqueConstraints={@ORM\UniqueConstraint(name="rel_server_actions_server_id_action_id_key", columns={"server_id", "action_id"})}, indexes={@ORM\Index(name="rel_server_actions_action_id_idx", columns={"action_id"}), @ORM\Index(name="rel_server_actions_server_id_idx", columns={"server_id"})})
+ * @ORM\Table(name="rel_server_actions", uniqueConstraints={@ORM\UniqueConstraint(name="rel_server_actions_server_id_action_id_key", columns={"server_id", "action_id"})}, indexes={@ORM\Index(name="rel_server_actions_server_id_idx", columns={"server_id"}), @ORM\Index(name="rel_server_actions_action_id_idx", columns={"action_id"})})
  * @ORM\Entity
  */
 class RelServerActions

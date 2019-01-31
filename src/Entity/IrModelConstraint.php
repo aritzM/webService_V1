@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModelConstraint
  *
- * @ORM\Table(name="ir_model_constraint", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_constraint_module_name_uniq", columns={"name", "module"})}, indexes={@ORM\Index(name="ir_model_constraint_name_index", columns={"name"}), @ORM\Index(name="ir_model_constraint_module_index", columns={"module"}), @ORM\Index(name="ir_model_constraint_model_index", columns={"model"}), @ORM\Index(name="ir_model_constraint_type_index", columns={"type"}), @ORM\Index(name="IDX_932030294C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_932030297C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_model_constraint", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_constraint_module_name_uniq", columns={"name", "module"})}, indexes={@ORM\Index(name="ir_model_constraint_module_index", columns={"module"}), @ORM\Index(name="ir_model_constraint_model_index", columns={"model"}), @ORM\Index(name="ir_model_constraint_type_index", columns={"type"}), @ORM\Index(name="ir_model_constraint_name_index", columns={"name"}), @ORM\Index(name="IDX_932030294C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_932030297C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrModelConstraint

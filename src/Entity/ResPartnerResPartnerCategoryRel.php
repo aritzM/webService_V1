@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResPartnerResPartnerCategoryRel
  *
- * @ORM\Table(name="res_partner_res_partner_category_rel", uniqueConstraints={@ORM\UniqueConstraint(name="res_partner_res_partner_category_rel_category_id_partner_id_key", columns={"category_id", "partner_id"})}, indexes={@ORM\Index(name="res_partner_res_partner_category_rel_partner_id_idx", columns={"partner_id"}), @ORM\Index(name="res_partner_res_partner_category_rel_category_id_idx", columns={"category_id"})})
+ * @ORM\Table(name="res_partner_res_partner_category_rel", uniqueConstraints={@ORM\UniqueConstraint(name="res_partner_res_partner_category_rel_category_id_partner_id_key", columns={"category_id", "partner_id"})}, indexes={@ORM\Index(name="res_partner_res_partner_category_rel_category_id_idx", columns={"category_id"}), @ORM\Index(name="res_partner_res_partner_category_rel_partner_id_idx", columns={"partner_id"})})
  * @ORM\Entity
  */
 class ResPartnerResPartnerCategoryRel

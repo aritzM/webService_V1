@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModel
  *
- * @ORM\Table(name="ir_model", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_obj_name_uniq", columns={"model"})}, indexes={@ORM\Index(name="IDX_3D1E9A1D4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_3D1E9A1D7C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_model", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_obj_name_uniq", columns={"model"})}, indexes={@ORM\Index(name="ir_model_model_index", columns={"model"}), @ORM\Index(name="IDX_3D1E9A1D4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_3D1E9A1D7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrModel
