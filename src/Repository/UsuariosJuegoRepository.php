@@ -13,7 +13,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 
-class UsuariosJuego extends ServiceEntityRepository
+class UsuariosJuegoRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
