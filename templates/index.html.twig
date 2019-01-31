@@ -6,15 +6,17 @@
     {% if error %}
         <h3>Error: {{ error }}</h3>
     {% endif %}
-    <form method="post" action="{{ path('login')}}">
-        <label>Username</label><input type="text" placeholder="Username" name="username">
-        <label>Password</label><input type="password" placeholder="Password" name="password">
-        <input type="submit" name="submit" value="Log in">
+<body class="text-center">
+    <form class="form-signin" method="post" action="{{ path('login')}}">
+        <img class="mb-4" src="img/logo.PNG" alt="Logo" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Tienda Fighter</h1>
+        <label class="sr-only">Username</label><input type="text" class="form-control" placeholder="Username" name="username">
+        <label class="sr-only">Password</label><input type="password" class="form-control" placeholder="Password" name="password">
+        <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Log in">
     </form>
+</body>
 {% endblock %}
-{% block footer %}
-    <footer>Tienda Figther</footer>
-{% endblock %}
+
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
