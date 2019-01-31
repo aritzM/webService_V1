@@ -112,5 +112,213 @@ class AlmiUsuariosJuego
      */
     private $writeUid;
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFosuser()
+    {
+        return $this->fosuser;
+    }
+
+    /**
+     * @param null|string $fosuser
+     */
+    public function setFosuser($fosuser)
+    {
+        $this->fosuser = $fosuser;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param null|string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getApellido()
+    {
+        return $this->apellido;
+    }
+
+    /**
+     * @param null|string $apellido
+     */
+    public function setApellido($apellido)
+    {
+        $this->apellido = $apellido;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param null|string $usuario
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPasswd()
+    {
+        return $this->passwd;
+    }
+
+    /**
+     * @param null|string $passwd
+     */
+    public function setPasswd($passwd)
+    {
+        $this->passwd = $passwd;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getVictoria()
+    {
+        return $this->victoria;
+    }
+
+    /**
+     * @param null|string $victoria
+     */
+    public function setVictoria($victoria)
+    {
+        $this->victoria = $victoria;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getDerrota()
+    {
+        return $this->derrota;
+    }
+
+    /**
+     * @param null|string $derrota
+     */
+    public function setDerrota($derrota)
+    {
+        $this->derrota = $derrota;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getDinero()
+    {
+        return $this->dinero;
+    }
+
+    /**
+     * @param null|string $dinero
+     */
+    public function setDinero($dinero)
+    {
+        $this->dinero = $dinero;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    /**
+     * @param \DateTime|null $createDate
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getWriteDate()
+    {
+        return $this->writeDate;
+    }
+
+    /**
+     * @param \DateTime|null $writeDate
+     */
+    public function setWriteDate($writeDate)
+    {
+        $this->writeDate = $writeDate;
+    }
+
+    /**
+     * @return \ResUsers
+     */
+    public function getCreateUid(): \ResUsers
+    {
+        return $this->createUid;
+    }
+
+    /**
+     * @param \ResUsers $createUid
+     */
+    public function setCreateUid(\ResUsers $createUid)
+    {
+        $this->createUid = $createUid;
+    }
+
+    /**
+     * @return \ResUsers
+     */
+    public function getWriteUid(): \ResUsers
+    {
+        return $this->writeUid;
+    }
+
+    /**
+     * @param \ResUsers $writeUid
+     */
+    public function setWriteUid(\ResUsers $writeUid)
+    {
+        $this->writeUid = $writeUid;
+    }
+
 
 }

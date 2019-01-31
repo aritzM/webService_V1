@@ -84,5 +84,149 @@ class AlmiSkinsJuego
      */
     private $writeUid;
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getNombreskin()
+    {
+        return $this->nombreskin;
+    }
+
+    /**
+     * @param null|string $nombreskin
+     */
+    public function setNombreskin($nombreskin)
+    {
+        $this->nombreskin = $nombreskin;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    /**
+     * @param null|string $imagen
+     */
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getRuta()
+    {
+        return $this->ruta;
+    }
+
+    /**
+     * @param null|string $ruta
+     */
+    public function setRuta($ruta)
+    {
+        $this->ruta = $ruta;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    /**
+     * @param null|string $precio
+     */
+    public function setPrecio($precio)
+    {
+        $this->precio = $precio;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    /**
+     * @param \DateTime|null $createDate
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getWriteDate()
+    {
+        return $this->writeDate;
+    }
+
+    /**
+     * @param \DateTime|null $writeDate
+     */
+    public function setWriteDate($writeDate)
+    {
+        $this->writeDate = $writeDate;
+    }
+
+    /**
+     * @return \ResUsers
+     */
+    public function getCreateUid(): \ResUsers
+    {
+        return $this->createUid;
+    }
+
+    /**
+     * @param \ResUsers $createUid
+     */
+    public function setCreateUid(\ResUsers $createUid)
+    {
+        $this->createUid = $createUid;
+    }
+
+    /**
+     * @return \ResUsers
+     */
+    public function getWriteUid(): \ResUsers
+    {
+        return $this->writeUid;
+    }
+
+    /**
+     * @param \ResUsers $writeUid
+     */
+    public function setWriteUid(\ResUsers $writeUid)
+    {
+        $this->writeUid = $writeUid;
+    }
+
 
 }
