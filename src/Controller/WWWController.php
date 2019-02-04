@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 use App\Entity\FosUser;
+use App\Entity\AlmiSkinsJuego;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
@@ -37,6 +38,29 @@ class WWWController extends AbstractController
 
     public function ver(){
 
+        $entity_manager = $this->getDoctrine()->getManager();
+        $parametros = array('skins' => null);
+
+        if(isset($_POST['id'])){
+
+            $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->find($_POST['id']);
+
+            $parametros = array('skins' => array('nombreSkin' => $info_skin->getNombreskin(), 'precio' => $info_skin->getPrecio(), 'ruta' => $info_skin->getRuta()));
+
+
+        }else{
+
+            $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->findAll();
+
+            foreach ($info_skin as $dato){
+
+                $parametros[] = array('skins' => array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta()));
+
+            }
+
+        }
+
+        return $this->render('Tienda/Skins/skins.html.twig', $parametros);
     }
 
     /**

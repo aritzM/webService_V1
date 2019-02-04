@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+{% endblock %}
+
+{% block menu %}
+
+    {% include 'Tienda/Menu/_menu.html.twig' %}
+
+    {% if skins %}
+        {% include 'Tienda/Skins/Tablas/_tabla_ver.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block contenido %}
+    <form method="post" action="{{ path('config') }}">
+        <label>Email</label><input type="email" placeholder="example@example.com" name="email"><br/>
+        <label>Nombre Usuario</label><input type="text" placeholder="Nombre Usuario" name="nombre"><br/>
+        <label>Username</label><input type="text" placeholder="Username" name="username"><br/>
+        <label>Skins</label><input type="text" placeholder="Skins" name="skins">
+    </form>
+{% endblock %}
+{% block footer %}
+    <footer>Tienda Figther</footer>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+{% endblock %}

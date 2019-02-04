@@ -152,7 +152,7 @@ class VideojuegoController extends AbstractController
            'apellido' =>$info_usu->getApellido(),
            'usuario' =>$info_usu->getUsuario(),
            'passwd' =>$info_usu->getPasswd(),
-           'vitorioa' =>$info_usu->getVictoria(),
+           'victoria' =>$info_usu->getVictoria(),
            'derrota'=>$info_usu->getDerrota());
 
         $parametro = array('usuario'=>$usu);
