@@ -131,6 +131,7 @@ class VideojuegoController extends AbstractController
         $entityManager1->persist($new_game_user);
         $entityManager1->flush();
     }
+
     /**
      * @Route("/ws/info", name="wsinfo", methods={"POST"})
      */
@@ -182,7 +183,7 @@ class VideojuegoController extends AbstractController
 
             foreach ($info_skin as $dato){
 
-                $skin[] = array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta());
+                $skin[] = array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio());
 
             }
 
