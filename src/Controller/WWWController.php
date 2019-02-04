@@ -23,7 +23,8 @@ class WWWController extends AbstractController
      */
 
     public function indexLogin(){
-        return $this->render('Tienda/Usuario/usuario.html.twig');
+        $parametros = array('error' => null);
+        return $this->render('Tienda/index.html.twig', $parametros);
     }
 
     /**
