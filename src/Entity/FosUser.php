@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * FosUser
  *
- * @ORM\Table(name="fos_user", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_957a647992fc23a8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="uniq_957a6479a0d96fbf", columns={"email_canonical"}), @ORM\UniqueConstraint(name="uniq_957a6479c05fb297", columns={"confirmation_token"})})
+ * @ORM\Table(name="fos_user", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_957a6479a0d96fbf", columns={"email_canonical"}), @ORM\UniqueConstraint(name="uniq_957a647992fc23a8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="uniq_957a6479c05fb297", columns={"confirmation_token"})})
  * @ORM\Entity
  */
 class FosUser
@@ -99,45 +99,197 @@ class FosUser
      */
     private $roles;
 
-    public function getId(){
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
         return $this->id;
     }
 
-    public function getUsername(){
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string
+    {
         return $this->username;
     }
 
-    public function getPassword(){
+    /**
+     * @param string $username
+     */
+    public function setUsername(string $username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsernameCanonical(): string
+    {
+        return $this->usernameCanonical;
+    }
+
+    /**
+     * @param string $usernameCanonical
+     */
+    public function setUsernameCanonical(string $usernameCanonical)
+    {
+        $this->usernameCanonical = $usernameCanonical;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmailCanonical(): string
+    {
+        return $this->emailCanonical;
+    }
+
+    /**
+     * @param string $emailCanonical
+     */
+    public function setEmailCanonical(string $emailCanonical)
+    {
+        $this->emailCanonical = $emailCanonical;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     */
+    public function setEnabled(bool $enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * @param null|string $salt
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
         return $this->password;
     }
 
-    public function setUsername($username){
-
-        $this->username = $username;
-        $this->usernameCanonical = $username;
-    }
-    public function getEmail(){
-        return $this->email;
-    }
-    public function getSalt(){
-        return $this->salt;
-    }
-    public function setSalt($salt){
-        $this->salt = $salt;
-    }
-    public function setPassword($password){
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password)
+    {
         $this->password = $password;
     }
 
-    public function setEmail($email){
-        $this->email = $email;
-        $this->emailCanonical = $email;
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
     }
 
-    public function setRoles($roles){
+    /**
+     * @param \DateTime|null $lastLogin
+     */
+    public function setLastLogin($lastLogin)
+    {
+        $this->lastLogin = $lastLogin;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
+
+    /**
+     * @param null|string $confirmationToken
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getPasswordRequestedAt()
+    {
+        return $this->passwordRequestedAt;
+    }
+
+    /**
+     * @param \DateTime|null $passwordRequestedAt
+     */
+    public function setPasswordRequestedAt($passwordRequestedAt)
+    {
+        $this->passwordRequestedAt = $passwordRequestedAt;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param array $roles
+     */
+    public function setRoles(array $roles)
+    {
         $this->roles = $roles;
     }
-    public function setEnabled($enabled){
-        $this->enabled = $enabled;
-    }
+
+
 }

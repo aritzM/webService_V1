@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResCountry
  *
- * @ORM\Table(name="res_country", uniqueConstraints={@ORM\UniqueConstraint(name="res_country_code_uniq", columns={"code"}), @ORM\UniqueConstraint(name="res_country_name_uniq", columns={"name"})}, indexes={@ORM\Index(name="IDX_71309D8858F0EF5F", columns={"address_view_id"}), @ORM\Index(name="IDX_71309D8838248176", columns={"currency_id"}), @ORM\Index(name="IDX_71309D884C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_71309D887C455263", columns={"write_uid"})})
+ * @ORM\Table(name="res_country", uniqueConstraints={@ORM\UniqueConstraint(name="res_country_name_uniq", columns={"name"}), @ORM\UniqueConstraint(name="res_country_code_uniq", columns={"code"})}, indexes={@ORM\Index(name="IDX_71309D8858F0EF5F", columns={"address_view_id"}), @ORM\Index(name="IDX_71309D8838248176", columns={"currency_id"}), @ORM\Index(name="IDX_71309D884C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_71309D887C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class ResCountry

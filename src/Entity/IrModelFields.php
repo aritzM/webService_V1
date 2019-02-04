@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModelFields
  *
- * @ORM\Table(name="ir_model_fields", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_fields_name_unique", columns={"model", "name"})}, indexes={@ORM\Index(name="ir_model_fields_name_index", columns={"name"}), @ORM\Index(name="ir_model_fields_model_id_index", columns={"model_id"}), @ORM\Index(name="ir_model_fields_state_index", columns={"state"}), @ORM\Index(name="ir_model_fields_model_index", columns={"model"}), @ORM\Index(name="ir_model_fields_complete_name_index", columns={"complete_name"}), @ORM\Index(name="IDX_E0B3C5BF4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_E0B3C5BF7C455263", columns={"write_uid"})})
+ * @ORM\Table(name="ir_model_fields", uniqueConstraints={@ORM\UniqueConstraint(name="ir_model_fields_name_unique", columns={"model", "name"})}, indexes={@ORM\Index(name="ir_model_fields_model_id_index", columns={"model_id"}), @ORM\Index(name="ir_model_fields_model_index", columns={"model"}), @ORM\Index(name="ir_model_fields_complete_name_index", columns={"complete_name"}), @ORM\Index(name="ir_model_fields_name_index", columns={"name"}), @ORM\Index(name="ir_model_fields_state_index", columns={"state"}), @ORM\Index(name="IDX_E0B3C5BF4C10A2D2", columns={"create_uid"}), @ORM\Index(name="IDX_E0B3C5BF7C455263", columns={"write_uid"})})
  * @ORM\Entity
  */
 class IrModelFields

@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Entity\AlmiSkinsJuego;
 use App\Entity\AlmiUsuariosJuego;
 use App\Entity\FosUser;
 use App\Repository\UserRepository;
@@ -84,14 +85,14 @@ class VideojuegoController extends AbstractController
         $new_fos_user = new FosUser();
 
         $new_fos_user->setEmail($request->email);
+        $new_fos_user->setEmailCanonical($request->email);
+        $new_fos_user->setUsernameCanonical($request->username);
         $new_fos_user->setUsername($request->username);
         $new_fos_user->setEnabled(true);
         $new_fos_user->setSalt(null);
 
         $plain_text = $factory_encoder->encodePassword($request->password, $new_fos_user->getSalt());
         $new_fos_user->setPassword($plain_text);
-
-        $new_fos_user->setRoles('a:0:{}');
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($new_fos_user);
@@ -159,7 +160,39 @@ class VideojuegoController extends AbstractController
 
     }
 
+    /**
+     * @Route("/ws/skins", name="wskins", methods={"POST"})
+     */
+    public function skins(){
+
+        $datos = file_get_contents('php://input');
+        $request = json_decode($datos);
+
+        $entity_manager = $this->getDoctrine()->getManager();
+
+        if(isset($request->id)){
+
+            $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->find($request->id);
+            $skin = array('nombreSkin' => $info_skin->getNombreskin(), 'precio' => $info_skin->getPrecio(), 'ruta' => $info_skin->getRuta());
+
+
+        }else{
+
+            $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->findAll();
+
+            foreach ($info_skin as $dato){
+
+                $skin[] = array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta());
+
+            }
+
+        }
+
+        return $this->enviar($skin);
+    }
+
     public function enviar($parametros){
+
         $response = new JsonResponse();
         $response->setStatusCode(200);
         $response->setData($parametros);

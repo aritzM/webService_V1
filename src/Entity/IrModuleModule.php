@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * IrModuleModule
  *
- * @ORM\Table(name="ir_module_module", uniqueConstraints={@ORM\UniqueConstraint(name="ir_module_module_name_uniq", columns={"name"}), @ORM\UniqueConstraint(name="name_uniq", columns={"name"})}, indexes={@ORM\Index(name="ir_module_module_state_index", columns={"state"}), @ORM\Index(name="ir_module_module_name_index", columns={"name"}), @ORM\Index(name="ir_module_module_category_id_index", columns={"category_id"})})
+ * @ORM\Table(name="ir_module_module", uniqueConstraints={@ORM\UniqueConstraint(name="name_uniq", columns={"name"}), @ORM\UniqueConstraint(name="ir_module_module_name_uniq", columns={"name"})}, indexes={@ORM\Index(name="ir_module_module_name_index", columns={"name"}), @ORM\Index(name="ir_module_module_state_index", columns={"state"}), @ORM\Index(name="ir_module_module_category_id_index", columns={"category_id"})})
  * @ORM\Entity
  */
 class IrModuleModule

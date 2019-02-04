@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ResGroupsReportRel
  *
- * @ORM\Table(name="res_groups_report_rel", uniqueConstraints={@ORM\UniqueConstraint(name="res_groups_report_rel_uid_gid_key", columns={"uid", "gid"})}, indexes={@ORM\Index(name="res_groups_report_rel_gid_idx", columns={"gid"}), @ORM\Index(name="res_groups_report_rel_uid_idx", columns={"uid"})})
+ * @ORM\Table(name="res_groups_report_rel", uniqueConstraints={@ORM\UniqueConstraint(name="res_groups_report_rel_uid_gid_key", columns={"uid", "gid"})}, indexes={@ORM\Index(name="res_groups_report_rel_uid_idx", columns={"uid"}), @ORM\Index(name="res_groups_report_rel_gid_idx", columns={"gid"})})
  * @ORM\Entity
  */
 class ResGroupsReportRel
