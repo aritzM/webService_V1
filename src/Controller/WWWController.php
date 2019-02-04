@@ -54,7 +54,7 @@ class WWWController extends AbstractController
 
             foreach ($info_skin as $dato){
 
-                $parametros[] = array('skins' => array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta()));
+                $parametros['skins'] = array('InfoSkins' => array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta()));
 
             }
 
@@ -75,6 +75,7 @@ class WWWController extends AbstractController
      */
 
     public function config(){
+
         $parametros = array('user' =>null);
 
         //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -152,5 +153,6 @@ class WWWController extends AbstractController
         return $this->render('index.html.twig', $parametros);
 
     }
+
 
 }

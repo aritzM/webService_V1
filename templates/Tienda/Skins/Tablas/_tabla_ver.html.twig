@@ -6,9 +6,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td class="active">{{ skins.nombreSkin }}</td>
-        <td class="info">{{ skins.precio }}</td>
-    </tr>
+        {% for skin in skins %}
+            <tr>
+                <td class="active">{{ skin.nombreSkin }}</td>
+                <td class="info">{{ skin.precio }}</td>
+            </tr>
+        {% endfor %}
     </tbody>
 </table>

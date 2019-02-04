@@ -162,6 +162,54 @@ class VideojuegoController extends AbstractController
     }
 
     /**
+     * @Route("/ws/user", name="wsupdate", methods={"POST"})
+     */
+    public function updateUser(){
+
+        $datos = file_get_contents('php://input');
+        $request = json_decode($datos);
+
+        $entity_manager = $this->getDoctrine()->getManager();
+        $id_fos_user = $this->updateFosUser($request->id, $request->email, $request->username, $request->password);
+        $user = $entity_manager->getRepository(AlmiUsuariosJuego::class)->find($id_fos_user);
+
+        $user->setName($request->name);
+        $user->setApellido($request->apellido);
+        $user->setUsuario($request->username);
+        $user->setPasswd($request->password);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $update = 'succesfull';
+
+        return $this->enviar($update);
+    }
+    protected function updateFosUser($id, $email, $username, $password){
+
+        $entity_manager = $this->getDoctrine()->getManager();
+        $factory_encoder = new BCryptPasswordEncoder(12);
+
+        $fos_user = $entity_manager->getRepository(FosUser::class)->find($id);
+        $id = $fos_user->getId();
+        $fos_user->setUsername($username);
+        $fos_user->setUsernameCanonical($username);
+        $fos_user->setEmail($email);
+        $fos_user->setEmailCanonical($email);
+
+        $encoded_password = $factory_encoder->encodePassword($password, $fos_user->getSalt());
+
+        $fos_user->setPassword($encoded_password);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($fos_user);
+        $entityManager->flush();
+
+        return $id;
+    }
+
+    /**
      * @Route("/ws/skins", name="wskins", methods={"POST"})
      */
     public function skins(){
