@@ -21,7 +21,7 @@
                         <li class="divider"></li>
                         <li class="dropdown-toggle"><b>Usuario</b></li>
                         <li class="divider"></li>
-                        <li><a href="{{ path('config') }}">Configuracion</a></li>
+                        <li><a href="{{ path('config', {'id':app.session.get('userID') }) }}">Configuracion</a></li>
                     </ul>
                 </li>
 

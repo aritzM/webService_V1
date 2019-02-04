@@ -55,6 +55,7 @@ class VideojuegoController extends AbstractController
 
                     $user = array('userID' =>$user_query->getId());
                     break;
+
                 }else{
 
                     $user = array('error' => "Usuario o contraseña no valido");
@@ -62,6 +63,7 @@ class VideojuegoController extends AbstractController
                 }
 
             }else{
+
                 $user = array('error' => "Usuario o contraseña incorrectos");
 
             }
@@ -122,19 +124,21 @@ class VideojuegoController extends AbstractController
                 $id_insert = $id->getId();
 
                 $new_game_user->setFosuser($id_insert);
+
             }
 
         }
 
-
         $entityManager1 = $this->getDoctrine()->getManager();
         $entityManager1->persist($new_game_user);
         $entityManager1->flush();
+
     }
 
     /**
      * @Route("/ws/info", name="wsinfo", methods={"POST"})
      */
+
     public function usuario()
     {
 
@@ -164,6 +168,7 @@ class VideojuegoController extends AbstractController
     /**
      * @Route("/ws/user", name="wsupdate", methods={"POST"})
      */
+
     public function updateUser(){
 
         $datos = file_get_contents('php://input');
@@ -185,7 +190,9 @@ class VideojuegoController extends AbstractController
         $update = 'succesfull';
 
         return $this->enviar($update);
+
     }
+
     protected function updateFosUser($id, $email, $username, $password){
 
         $entity_manager = $this->getDoctrine()->getManager();
@@ -207,11 +214,13 @@ class VideojuegoController extends AbstractController
         $entityManager->flush();
 
         return $id;
+
     }
 
     /**
      * @Route("/ws/skins", name="wskins", methods={"POST"})
      */
+
     public function skins(){
 
         $datos = file_get_contents('php://input');
@@ -223,7 +232,6 @@ class VideojuegoController extends AbstractController
 
             $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->find($request->id);
             $skin = array('nombreSkin' => $info_skin->getNombreskin(), 'precio' => $info_skin->getPrecio(), 'ruta' => $info_skin->getRuta());
-
 
         }else{
 
@@ -238,6 +246,7 @@ class VideojuegoController extends AbstractController
         }
 
         return $this->enviar($skin);
+
     }
 
     public function enviar($parametros){
@@ -245,8 +254,9 @@ class VideojuegoController extends AbstractController
         $response = new JsonResponse();
         $response->setStatusCode(200);
         $response->setData($parametros);
-        return $response;
-    }
 
+        return $response;
+
+    }
 
 }

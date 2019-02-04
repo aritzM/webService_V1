@@ -7,18 +7,20 @@
 
     {% include 'Tienda/Menu/_menu.html.twig' %}
 
-    {% if user %}
-        {% include 'Tienda/Usuario/Tablas/_tabla_ver.html.twig' %}
-    {% endif %}
+
 {% endblock %}
 
 {% block contenido %}
-    <form method="post" action="{{ path('config') }}">
+    {% if app.session %}
+        {% include 'Tienda/Usuario/Tablas/_tabla_ver.html.twig' %}
+    {% endif %}
+
+    <!--<form method="post" action="{ path('config') }}">
         <label>Email</label><input type="email" placeholder="example@example.com" name="email"><br/>
         <label>Nombre Usuario</label><input type="text" placeholder="Nombre Usuario" name="nombre"><br/>
         <label>Username</label><input type="text" placeholder="Username" name="username"><br/>
         <label>Skins</label><input type="text" placeholder="Skins" name="skins">
-    </form>
+    </form>-->
 {% endblock %}
 {% block footer %}
     <footer>Tienda Figther</footer>

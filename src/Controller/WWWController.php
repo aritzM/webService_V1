@@ -7,8 +7,10 @@
  */
 
 namespace App\Controller;
+use App\Entity\AlmiUsuariosJuego;
 use App\Entity\FosUser;
 use App\Entity\AlmiSkinsJuego;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
@@ -23,6 +25,7 @@ class WWWController extends AbstractController
     public function indexLogin(){
         return $this->render('Tienda/Usuario/usuario.html.twig');
     }
+
     /**
      * @Route("/", name="home")
      */
@@ -70,35 +73,35 @@ class WWWController extends AbstractController
     public function comprar(){
 
     }
+
     /**
-     * @Route("/config", name="config")
+     * @Route("/config/{id}", name="config")
      */
 
-    public function config(){
+    public function config($id){
 
-        $parametros = array('user' =>null);
+        $entity_manager = $this->getDoctrine()->getManager();
 
-        //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $user_query = $entity_manager->getRepository(FosUser::class)->find($id);
 
- //           if ($_POST['id'] != ""){
+        $entityManager = $this->getDoctrine()->getManager();
 
-                $entity_manager = $this->getDoctrine()->getManager();
+        $info_user = $entityManager->getRepository(AlmiUsuariosJuego::class)->findAll();
 
-                $user_query = $entity_manager->getRepository(FosUser::class)->find(1);
+        foreach ($info_user as $dato){
 
-                $parametros = array('user' => array('username' => $user_query->getUsername(), 'email' => $user_query->getEmail(), 'password'=>$user_query->getPassword()));
+            if($dato->getFosuser() == $user_query->getId()){
 
-                return $this->render('Tienda/Usuario/usuario.html.twig', $parametros);
+                $parametros = array('user' => array('username' => $dato->getUsuario(), 'email' => $user_query->getEmail(), 'password'=>$dato->getPasswd()));
+                break;
+            }
 
-   //         }
-        //}else{
+        }
 
-          //  $parametros = array('error' => "METODO NO VALIDO");
-
-        //}
-        //return $this->render('Tienda/index.html.twig', $parametros);
+        return $this->render('Tienda/Usuario/usuario.html.twig', $parametros);
 
     }
+
     /**
      * @Route("/login", name="login")
      */
@@ -125,6 +128,13 @@ class WWWController extends AbstractController
 
                             $parametros = array('userID' => $item->getId(), 'error' => null);
                             //$this->USER_ID = $item->getId();
+
+                            $session = new Session();
+                            $session->set('userID', $item->getId());
+                            $session->set('nombre', $item->getUsername());
+                            $session->set('email', $item->getEmail());
+                            $session->start();
+
                             return $this->render('Tienda/index.html.twig', $parametros);
 
                         }
@@ -153,6 +163,5 @@ class WWWController extends AbstractController
         return $this->render('index.html.twig', $parametros);
 
     }
-
 
 }

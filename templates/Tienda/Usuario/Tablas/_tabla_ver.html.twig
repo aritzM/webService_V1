@@ -9,10 +9,10 @@
     </thead>
     <tbody>
     <tr>
-        <td class="active">{{ user.email }}</td>
-        <td class="info">{{ user.username }}</td>
-        <td class="success">{{ user.username }}</td>
-        <td class="warning">{{ user.password }}</td>
+        <td class="active">{{ app.session.get('email') }}</td>
+        <td class="info">{{ app.session.get('nombre') }}</td>
+        <td class="success">{{ app.session.get('nombre') }}</td>
+        <td class="warning">{{ app.session.get('userID') }}</td>
     </tr>
     </tbody>
 </table>
