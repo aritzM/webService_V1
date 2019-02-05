@@ -58,34 +58,24 @@ class AlmiSkinsJuegoAlmiUsuariosJuegoRel
         $this->id = $id;
     }
 
-    /**
-     * @return \AlmiUsuariosJuego
-     */
-    public function getAlmiUsuariosJuego(): \AlmiUsuariosJuego
+
+    public function getAlmiUsuariosJuego()
     {
         return $this->almiUsuariosJuego;
     }
 
-    /**
-     * @param \AlmiUsuariosJuego $almiUsuariosJuego
-     */
-    public function setAlmiUsuariosJuego(\AlmiUsuariosJuego $almiUsuariosJuego)
+    public function setAlmiUsuariosJuego($almiUsuariosJuego)
     {
         $this->almiUsuariosJuego = $almiUsuariosJuego;
     }
 
-    /**
-     * @return \AlmiSkinsJuego
-     */
-    public function getAlmiSkinsJuego(): \AlmiSkinsJuego
+    public function getAlmiSkinsJuego()
     {
         return $this->almiSkinsJuego;
     }
 
-    /**
-     * @param \AlmiSkinsJuego $almiSkinsJuego
-     */
-    public function setAlmiSkinsJuego(\AlmiSkinsJuego $almiSkinsJuego)
+
+    public function setAlmiSkinsJuego($almiSkinsJuego)
     {
         $this->almiSkinsJuego = $almiSkinsJuego;
     }

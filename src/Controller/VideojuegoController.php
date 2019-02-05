@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\AlmiSkinsJuego;
+use App\Entity\AlmiSkinsJuegoAlmiUsuariosJuegoRel;
 use App\Entity\AlmiUsuariosJuego;
 use App\Entity\FosUser;
 use App\Repository\UserRepository;
@@ -24,6 +25,9 @@ use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 class VideojuegoController extends AbstractController
 {
 
+/*##########################################CONTROL USUARIO##################################################################################*/
+/*###############################################################################################################################################*/
+/*##########################################CONTROL LOGIN#####################################################################################################*/
     /**
      * @Route("/ws/login", name="wslogin", methods={"POST"})
      */
@@ -35,16 +39,12 @@ class VideojuegoController extends AbstractController
         $username = $request->username;
         $password_url = $request->password;
 
-        //$username = $_POST['username'];
-        //$password_url = $_POST['password'];
-
         $entityManager = $this->getDoctrine()->getManager();
 
         $userRepository = $entityManager->getRepository(FosUser::class)->findAll();
         $factory_encoder = new BCryptPasswordEncoder(12);
 
         $user = array();
-        //$factory = $this->get('security.encoder_factory');
 
         foreach ($userRepository as $user_query){
 
@@ -74,6 +74,9 @@ class VideojuegoController extends AbstractController
         return $this->enviar($user);
     }
 
+/*#############################################FIN LOGIN##################################################################################################*/
+/*###############################################################################################################################################*/
+/*#######################CONTROL REGISTER FOS USER (PRIVATE FUNCTION PARA CREAR USUARIO VIDEOJUEGO)#################################################################################################*/
     /**
      ** @Route("/ws/register", name="register", methods={"POST"})
      */
@@ -107,6 +110,13 @@ class VideojuegoController extends AbstractController
         return $this->enviar($parametros);
     }
 
+/*##################################################FIN CONTROL REGISTRO#############################################################################################*/
+/*###############################################################################################################################################*/
+/*###############################################################################################################################################*/
+
+/*###############################################################################################################################################*/
+/*FUNCION CREAR USUARIO DEL VIDEOJUEGO*/
+/*###############################################################################################################################################*/
     protected function createUserGame($user, $password){
 
         $new_game_user = new AlmiUsuariosJuego();
@@ -135,6 +145,9 @@ class VideojuegoController extends AbstractController
 
     }
 
+/*####################################################FIN REGISTRO USUARIO###########################################################################################*/
+/*###############################################################################################################################################*/
+/*####################################################CONTROL INFO USUARIO###########################################################################################*/
     /**
      * @Route("/ws/info", name="wsinfo", methods={"POST"})
      */
@@ -151,8 +164,6 @@ class VideojuegoController extends AbstractController
 
         $info_usu = $entityManager->getRepository(AlmiUsuariosJuego::class)->findAll();
 
-        $usu = array();
-
         foreach ($info_usu as $dato){
 
             if ($dato->getId() == $idUsu){
@@ -168,6 +179,10 @@ class VideojuegoController extends AbstractController
         return $this->enviar($parametro);
 
     }
+
+/*#############################################################FIN INFO USUARIO##################################################################################*/
+/*###############################################################################################################################################*/
+/*########################################CONTROL UPDATE USER INFO (PRIVATE FUNCTION PARA UPDATEAR FOS USER ESTA APARTE)##################################################################################*/
 
     /**
      * @Route("/ws/user", name="wsupdate", methods={"POST"})
@@ -255,6 +270,14 @@ class VideojuegoController extends AbstractController
         return $this->enviar($update);
 
     }
+/*#########################################FIN UPDATE INFO USER JUEGO######################################################################################################*/
+/*###############################################################################################################################################*/
+/*###############################################################################################################################################*/
+
+
+/*###############################################################################################################################################*/
+    /*FUNCION PARA UPDATE FOS USER EN CASO DE CONTENER INFORMACION*/
+/*###############################################################################################################################################*/
 
     protected function updateFosUser($id, $email, $username, $password){
 
@@ -292,6 +315,16 @@ class VideojuegoController extends AbstractController
 
     }
 
+/*###############################################################################################################################################*/
+    /*FIN FUNCION PARA UPDATE FOS USER EN CASO DE CONTENER INFORMACION*/
+/*###############################################################################################################################################*/
+
+
+/*##############################################FIN CONTROL USUARIO###############################################################################################*/
+/*###############################################################################################################################################*/
+/*###############################################CONTROL JUEGO################################################################################################*/
+
+/*###############################################CONTROL SKINS################################################################################################*/
     /**
      * @Route("/ws/skins", name="wskins", methods={"POST"})
      */
@@ -323,13 +356,113 @@ class VideojuegoController extends AbstractController
         return $this->enviar($skin);
 
     }
-
+/*##########################################################FIN CONTROL SKINS##################################################################################*/
+/*###############################################################################################################################################*/
+/*##########################################################CONTROL COMPRA#####################################################################################*/
     /**
      * @Route("/ws/skins/compra", name="wsskinscompra", methods={"POST"})
      */
     public function compra(){
 
+        $datos = file_get_contents('php://input');
+        $request = json_decode($datos);
+
+        $compra = new AlmiSkinsJuegoAlmiUsuariosJuegoRel();
+
+        $entity_manager = $this->getDoctrine()->getManager();
+
+        $user = $entity_manager->getRepository(AlmiUsuariosJuego::class)->find($request->idUser);
+
+        $skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->find($request->idSkin);
+
+        $dinero_usuario = $user->getDinero();
+        $skin_coste = $skin->getPrecio();
+
+        if($dinero_usuario<$skin_coste){
+
+            $parametros = array('compra' => 'No tienes suficiente dinero');
+
+        }
+
+        if ($dinero_usuario>$skin_coste){
+
+            $compra->setAlmiSkinsJuego($skin);
+            $compra->setAlmiUsuariosJuego($user);
+
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->persist($compra);
+            $entityManager->flush();
+
+            $total = $dinero_usuario - $skin_coste;
+
+            $user->setDinero($total);
+            $entity_manager->persist($user);
+            $entity_manager->flush();
+
+            $parametros = array('compra'=>'successfull', 'dineroUsuario' =>$total);
+
+        }
+
+
+        return $this->enviar($parametros);
     }
+
+/*##################################################FIN CONTROL COMPRA#############################################################################################*/
+/*###############################################################################################################################################*/
+/*####################################CONTROL VICTORIA/DERROTA Y DINERO#############################################################################################*/
+    /**
+     * @Route("/ws/gameover", name="wsgameover", methods={"POST"})
+     */
+    public function gameOver(){
+
+        $datos = file_get_contents('php://input');
+        $request = json_decode($datos);
+
+        $entity_manager=$this->getDoctrine()->getManager();
+
+        $users = $entity_manager->getRepository(AlmiUsuariosJuego::class)->findAll();
+
+        foreach ($users as $user){
+
+            if ($user->getId()==$request->id){
+
+                if (isset($request->victoria)){
+
+                    $user->setVictoria($request->victoria);
+
+                }
+
+                if (isset($request->derrota)){
+
+                    $user->setDerrota($request->derrota);
+
+                }
+
+                if (isset($request->dinero)){
+
+                    $user->setDinero($request->dinero);
+
+                }
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+                $parametros = array('dinero'=>$user->getDinero(), 'derrota'=>$user->getDerrota(), 'victoria'=>$user->getVictoria());
+
+                break;
+            }
+
+        }
+
+        return $this->enviar($parametros);
+
+    }
+/*######################################################FIN CONTROL VICTORIA/DERROTA Y DINERO#########################################################################################*/
+
+/*##########################################################FIN CONTROL USUARIO#####################################################################################*/
+/*###############################################################################################################################################*/
+/*###########################################################METODO PARA ENVIAR JSON####################################################################################*/
     public function enviar($parametros){
 
         $response = new JsonResponse();
@@ -339,5 +472,7 @@ class VideojuegoController extends AbstractController
         return $response;
 
     }
-
+/*###############################################################################################################################################*/
+/*###############################################################FINNNNNNNNNNNN################################################################################*/
+/*###############################################################################################################################################*/
 }
