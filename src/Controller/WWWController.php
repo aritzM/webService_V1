@@ -55,9 +55,11 @@ class WWWController extends AbstractController
 
             foreach ($info_skin as $dato){
 
-                $parametros['skins'] = array('InfoSkins' => array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta()));
+                $skins[] = array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta());
 
             }
+
+            $parametros['skins'] = $skins;
 
         }
 
