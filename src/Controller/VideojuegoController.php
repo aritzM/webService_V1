@@ -321,6 +321,12 @@ class VideojuegoController extends AbstractController
 
     }
 
+    /**
+     * @Route("/ws/skins/compra", name="wsskinscompra", methods={"POST"})
+     */
+    public function compra(){
+
+    }
     public function enviar($parametros){
 
         $response = new JsonResponse();
