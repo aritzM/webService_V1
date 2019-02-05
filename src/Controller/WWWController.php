@@ -48,7 +48,6 @@ class WWWController extends AbstractController
 
             $parametros = array('skins' => array('nombreSkin' => $info_skin->getNombreskin(), 'precio' => $info_skin->getPrecio(), 'ruta' => $info_skin->getRuta()));
 
-
         }else{
 
             $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->findAll();
@@ -64,6 +63,7 @@ class WWWController extends AbstractController
         }
 
         return $this->render('Tienda/Skins/skins.html.twig', $parametros);
+
     }
 
     /**
