@@ -21,7 +21,6 @@ class WWWController extends AbstractController
     /**
      * @Route("/index", name="index")
      */
-
     public function indexLogin(){
         $parametros = array('error' => null);
         return $this->render('Tienda/index.html.twig', $parametros);
@@ -30,7 +29,6 @@ class WWWController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-
     public function index(){
         $parametros = array('title' => 'Tienda Figther', 'error' => null);
         return $this-> render('index.html.twig', $parametros);
@@ -39,7 +37,6 @@ class WWWController extends AbstractController
     /**
      * @Route("/ver", name="ver")
      */
-
     public function ver(){
 
         $entity_manager = $this->getDoctrine()->getManager();
@@ -70,7 +67,6 @@ class WWWController extends AbstractController
     /**
      * @Route("/comprar", name="comprar")
      */
-
     public function comprar(){
 
     }
@@ -78,7 +74,6 @@ class WWWController extends AbstractController
     /**
      * @Route("/config/{id}", name="config")
      */
-
     public function config($id){
 
         $entity_manager = $this->getDoctrine()->getManager();
@@ -106,7 +101,6 @@ class WWWController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-
     public function login(){
 
         $parametros = array('error' => null);

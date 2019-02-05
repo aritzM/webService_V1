@@ -12,6 +12,7 @@ use App\Entity\AlmiSkinsJuego;
 use App\Entity\AlmiUsuariosJuego;
 use App\Entity\FosUser;
 use App\Repository\UserRepository;
+use App\Repository\UsuariosJuegoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -76,7 +77,6 @@ class VideojuegoController extends AbstractController
     /**
      ** @Route("/ws/register", name="register", methods={"POST"})
      */
-
     public function registerAction(){
 
         $datos = file_get_contents('php://input');
@@ -138,7 +138,6 @@ class VideojuegoController extends AbstractController
     /**
      * @Route("/ws/info", name="wsinfo", methods={"POST"})
      */
-
     public function usuario()
     {
 
@@ -147,20 +146,25 @@ class VideojuegoController extends AbstractController
 
         $idUsu = $request->id;
 
+
         $entityManager = $this->getDoctrine()->getManager();
-        $info_usu = $entityManager->getRepository(AlmiUsuariosJuego::class)->find($idUsu);
+
+        $info_usu = $entityManager->getRepository(AlmiUsuariosJuego::class)->findAll();
 
         $usu = array();
 
-        $usu[] = array(
-           'name' => $info_usu->getName(),
-           'apellido' =>$info_usu->getApellido(),
-           'usuario' =>$info_usu->getUsuario(),
-           'passwd' =>$info_usu->getPasswd(),
-           'victoria' =>$info_usu->getVictoria(),
-           'derrota'=>$info_usu->getDerrota());
+        foreach ($info_usu as $dato){
 
-        $parametro = array('usuario'=>$usu);
+            if ($dato->getId() == $idUsu){
+
+                $parametro = array('name' => $dato->getName(), 'apellido' =>$dato->getApellido(), 'usuario' =>$dato->getUsuario(),
+                               'passwd' =>$dato->getPasswd(), 'victoria' =>$dato->getVictoria(), 'derrota'=>$dato->getDerrota(),
+                               'dinero' =>$dato->getDinero());
+
+            }
+
+        }
+
         return $this->enviar($parametro);
 
     }
@@ -168,7 +172,6 @@ class VideojuegoController extends AbstractController
     /**
      * @Route("/ws/user", name="wsupdate", methods={"POST"})
      */
-
     public function updateUser(){
 
         $datos = file_get_contents('php://input');
