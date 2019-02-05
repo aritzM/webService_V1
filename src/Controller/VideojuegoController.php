@@ -178,6 +178,8 @@ class VideojuegoController extends AbstractController
         $id_fos_user = $this->updateFosUser($request->id, $request->email, $request->username, $request->password);
         $user = $entity_manager->getRepository(AlmiUsuariosJuego::class)->find($id_fos_user);
 
+        
+
         $user->setName($request->name);
         $user->setApellido($request->apellido);
         $user->setUsuario($request->username);
