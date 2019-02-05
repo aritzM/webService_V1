@@ -42,7 +42,7 @@ class WWWController extends AbstractController
         $entity_manager = $this->getDoctrine()->getManager();
         $parametros = array('skins' => null);
 
-        if(isset($_POST['id'])){
+        if(isset($_GET['id'])){
 
             $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->find($_POST['id']);
 
