@@ -4,7 +4,7 @@
 {% endblock %}
 {% block contenido %}
     {% if error %}
-        <h3>Error: {{ error }}</h3>
+        <h3 class="miTop">Error: {{ error }}</h3>
     {% endif %}
 <body class="text-center">
     <form class="form-signin" method="post" action="{{ path('login')}}">
