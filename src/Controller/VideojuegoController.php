@@ -175,15 +175,73 @@ class VideojuegoController extends AbstractController
         $request = json_decode($datos);
 
         $entity_manager = $this->getDoctrine()->getManager();
-        $id_fos_user = $this->updateFosUser($request->id, $request->email, $request->username, $request->password);
+
+        if (isset($request->id)){
+
+            $id = $request->id;
+
+        }else{
+
+            $id = null;
+
+        }
+
+        if (isset($request->email)){
+
+            $email = $request->email;
+
+        }else{
+
+            $email = null;
+
+        }
+
+        if (isset($request->username)){
+
+            $username = $request->username;
+
+        }else{
+
+            $username = null;
+
+        }
+
+        if (isset($request->password)){
+
+            $password = $request->password;
+
+        }else{
+
+            $password = null;
+
+        }
+
+        $id_fos_user = $this->updateFosUser($id, $email, $username, $password);
+
         $user = $entity_manager->getRepository(AlmiUsuariosJuego::class)->find($id_fos_user);
 
-        
+        if(isset($request->name)){
 
-        $user->setName($request->name);
-        $user->setApellido($request->apellido);
-        $user->setUsuario($request->username);
-        $user->setPasswd($request->password);
+            $user->setName($request->name);
+
+        }
+
+        if(isset($request->apellido)){
+
+            $user->setApellido($request->apellido);
+
+        }
+
+        if (isset($request->username)){
+
+            $user->setUsuario($request->username);
+        }
+
+        if (isset($request->password)){
+
+            $user->setPasswd($request->password);
+
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
@@ -202,14 +260,26 @@ class VideojuegoController extends AbstractController
 
         $fos_user = $entity_manager->getRepository(FosUser::class)->find($id);
         $id = $fos_user->getId();
-        $fos_user->setUsername($username);
-        $fos_user->setUsernameCanonical($username);
-        $fos_user->setEmail($email);
-        $fos_user->setEmailCanonical($email);
 
-        $encoded_password = $factory_encoder->encodePassword($password, $fos_user->getSalt());
+        if (!is_null($username)){
 
-        $fos_user->setPassword($encoded_password);
+            $fos_user->setUsername($username);
+            $fos_user->setUsernameCanonical($username);
+
+        }
+
+        if (!is_null($email)){
+
+            $fos_user->setEmail($email);
+            $fos_user->setEmailCanonical($email);
+        }
+
+        if (!is_null($password)){
+
+            $encoded_password = $factory_encoder->encodePassword($password, $fos_user->getSalt());
+            $fos_user->setPassword($encoded_password);
+
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($fos_user);
