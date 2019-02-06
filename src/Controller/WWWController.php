@@ -127,7 +127,6 @@ class WWWController extends AbstractController
 
             }
 
-
         }
 
         $parametros['skins'] = $skins;
