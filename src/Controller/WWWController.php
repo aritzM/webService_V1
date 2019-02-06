@@ -90,7 +90,9 @@ class WWWController extends AbstractController
         $dinero_skin = $skin->getPrecio();
 
         if ($dinero_skin>$dinero_user){
+
             $parametros['compra'] = 'No tienes suficiente dinero';
+
         }
 
         if ($dinero_skin<$dinero_user){
@@ -110,7 +112,7 @@ class WWWController extends AbstractController
 
             $this->get('session')->set('dinero', $total);
 
-            $parametros['compra'] = 'successfull';
+            $parametros['compra'] = 'Compra Realizada';
 
         }
 
@@ -150,7 +152,9 @@ class WWWController extends AbstractController
 
             if($dato->getFosuser() == $user_query->getId()){
 
-                $parametros = array('user' => array('username' => $dato->getUsuario(), 'email' => $user_query->getEmail(), 'password'=>$dato->getPasswd()));
+                $user = array('username' => $dato->getUsuario(), 'email' => $user_query->getEmail(), 'password'=>$dato->getPasswd());
+                $parametros['user'] = $user;
+
                 break;
             }
 

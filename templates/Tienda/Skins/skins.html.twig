@@ -10,7 +10,9 @@
 
 {% endblock %}
 {% block contenido %}
-
+    {% if compra is defined %}
+        {{ compra }}
+    {% endif %}
     {% if skins is defined%}
 
         {% include 'Tienda/Skins/Tablas/_tabla_editar.html.twig' %}
