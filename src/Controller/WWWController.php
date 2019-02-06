@@ -91,7 +91,7 @@ class WWWController extends AbstractController
 
         if ($dinero_skin>$dinero_user){
 
-            $parametros['compra'] = 'No tienes suficiente dinero';
+            $parametros['compra'] = array('error' => 'No tienes suficiente dinero', 'tipo' => 1);
 
         }
 
@@ -112,7 +112,7 @@ class WWWController extends AbstractController
 
             $this->get('session')->set('dinero', $total);
 
-            $parametros['compra'] = 'Compra Realizada';
+            $parametros['compra'] = array('mensaje'=>'Compra Realizada', 'tipo'=>0);
 
         }
 

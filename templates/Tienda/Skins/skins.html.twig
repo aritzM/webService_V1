@@ -11,7 +11,13 @@
 {% endblock %}
 {% block contenido %}
     {% if compra is defined %}
-        {{ compra }}
+        {% if compra.tipo == 0 %}
+            {{ compra.mensaje }}
+        {% endif %}
+
+        {% if compra.tipo == 1 %}
+            {{ compra.error }}
+        {% endif %}
     {% endif %}
     {% if skins is defined%}
 
