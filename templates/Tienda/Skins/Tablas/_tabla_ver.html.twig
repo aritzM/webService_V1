@@ -1,6 +1,9 @@
+
+
 <table class="text-center table table-bordered">
     <thead>
     <tr>
+        <td>Imagen Skin</td>
         <td>Nombre Skin</td>
         <td>Precio</td>
     </tr>
@@ -8,9 +11,12 @@
     <tbody>
         {% for skin in skins %}
             <tr>
-                <td class="active">{{ skin.nombreSkin }}</td>
-                <td class="info">{{ skin.precio }}</td>
+                <td class="active"><img src={{ skin.ruta }} height='250px'/></td>
+                <td class="active text-center"t>{{ skin.nombreSkin }}</td>
+                <td class="info text-center">{{ skin.precio }}</td>
+                <td ><input type="checkbox" name="comprar"></td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
+<button type="submit" class="btn btn-default ">Comprar Seleccionados</button>

@@ -9,16 +9,14 @@
 
     {% if skins %}
         {% include 'Tienda/Skins/Tablas/_tabla_ver.html.twig' %}
+
+
+
     {% endif %}
 {% endblock %}
-
 {% block contenido %}
 
-    {% for skin in skins %}
 
-        {{ skin.id }}
-
-    {% endfor %}
     <!--<form method="post" action="{ path('config') }}">
         <label>Email</label><input type="email" placeholder="example@example.com" name="email"><br/>
         <label>Nombre Usuario</label><input type="text" placeholder="Nombre Usuario" name="nombre"><br/>
