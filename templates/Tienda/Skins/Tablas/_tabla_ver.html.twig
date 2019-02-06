@@ -7,10 +7,10 @@
     </thead>
     <tbody>
         {% for skin in skins %}
-            <a href="{{ path('ver', {'id':skin.id} ) }}"><tr>
+            <tr>
                 <td class="active">{{ skin.nombreSkin }}</td>
                 <td class="info">{{ skin.precio }}</td>
-            </tr></a>
+            </tr>
         {% endfor %}
     </tbody>
 </table>

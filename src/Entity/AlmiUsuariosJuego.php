@@ -288,34 +288,22 @@ class AlmiUsuariosJuego
         $this->writeDate = $writeDate;
     }
 
-    /**
-     * @return \ResUsers
-     */
-    public function getCreateUid(): \ResUsers
+
+    public function getCreateUid()
     {
         return $this->createUid;
     }
 
-    /**
-     * @param \ResUsers $createUid
-     */
-    public function setCreateUid(\ResUsers $createUid)
+    public function setCreateUid($createUid)
     {
         $this->createUid = $createUid;
     }
 
-    /**
-     * @return \ResUsers
-     */
-    public function getWriteUid(): \ResUsers
-    {
+    public function getWriteUid(){
         return $this->writeUid;
     }
 
-    /**
-     * @param \ResUsers $writeUid
-     */
-    public function setWriteUid(\ResUsers $writeUid)
+    public function setWriteUid($writeUid)
     {
         $this->writeUid = $writeUid;
     }

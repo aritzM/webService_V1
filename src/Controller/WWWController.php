@@ -42,25 +42,15 @@ class WWWController extends AbstractController
         $entity_manager = $this->getDoctrine()->getManager();
         $parametros = array('skins' => null);
 
-        if(isset($_GET['id'])){
+        $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->findAll();
 
-            $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->find($_POST['id']);
+        foreach ($info_skin as $dato){
 
-            $parametros = array('skins' => array('nombreSkin' => $info_skin->getNombreskin(), 'precio' => $info_skin->getPrecio(), 'ruta' => $info_skin->getRuta()));
-
-        }else{
-
-            $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->findAll();
-
-            foreach ($info_skin as $dato){
-
-                $skins[] = array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta());
-
-            }
-
-            $parametros['skins'] = $skins;
+            $skins[] = array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta());
 
         }
+
+        $parametros['skins'] = $skins;
 
         return $this->render('Tienda/Skins/skins.html.twig', $parametros);
 

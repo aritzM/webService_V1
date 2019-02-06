@@ -458,11 +458,47 @@ class VideojuegoController extends AbstractController
         return $this->enviar($parametros);
 
     }
-/*######################################################FIN CONTROL VICTORIA/DERROTA Y DINERO#########################################################################################*/
 
+/*######################################################FIN CONTROL VICTORIA/DERROTA Y DINERO############################################################*/
+/*##################################################################################################################################################*/
+/*################################################CONTROL COMPRADO#############################################################################*/
+
+
+    /**
+    * @Route("/ws/comprado", name="wscomprado", methods={"POST"})
+    */
+    public function comprado(){
+
+        $datos = file_get_contents('php://input');
+        $request = json_decode($datos);
+
+        $entity_manager = $this->getDoctrine()->getManager();
+
+        $compras = $entity_manager->getRepository(AlmiSkinsJuegoAlmiUsuariosJuegoRel::class)->findAll();
+
+        foreach ($compras as $compra){
+
+            if($compra->getAlmiUsuariosJuego()->getId() == $request->idUser){
+
+                $realidazdos[] = array('id' => $compra->getAlmiSkinsJuego()->getId(), 'nombreSkin' => $compra->getAlmiSkinsJuego()->getNombreSkin());
+
+            }
+
+        }
+
+        //$entityManager = $this->getDoctrine()->getManager();
+        //$nombre = $entityManager->getRepository(AlmiSkinsJuego::class);
+
+        $parametros['compras'] = $realidazdos;
+        return $this->enviar($parametros);
+
+    }
+/*################################################FIN CONTROL COMPRADO############################################################################*/
+/*##################################################################################################################################################*/
 /*##########################################################FIN CONTROL USUARIO#####################################################################################*/
 /*###############################################################################################################################################*/
 /*###########################################################METODO PARA ENVIAR JSON####################################################################################*/
+
     public function enviar($parametros){
 
         $response = new JsonResponse();
@@ -472,6 +508,7 @@ class VideojuegoController extends AbstractController
         return $response;
 
     }
+
 /*###############################################################################################################################################*/
 /*###############################################################FINNNNNNNNNNNN################################################################################*/
 /*###############################################################################################################################################*/
