@@ -480,24 +480,22 @@ class VideojuegoController extends AbstractController
 
             if($compra->getAlmiUsuariosJuego()->getId() == $request->idUser){
 
-                $realidazdos[] = array('id' => $compra->getAlmiSkinsJuego()->getId(), 'nombreSkin' => $compra->getAlmiSkinsJuego()->getNombreSkin());
+                $realizados[] = array('id' => $compra->getAlmiSkinsJuego()->getId(), 'nombreSkin' => $compra->getAlmiSkinsJuego()->getNombreSkin());
 
             }
 
         }
 
-        //$entityManager = $this->getDoctrine()->getManager();
-        //$nombre = $entityManager->getRepository(AlmiSkinsJuego::class);
-
-        $parametros['compras'] = $realidazdos;
+        $parametros['compras'] = $realizados;
         return $this->enviar($parametros);
 
     }
+
 /*################################################FIN CONTROL COMPRADO############################################################################*/
 /*##################################################################################################################################################*/
-/*##########################################################FIN CONTROL USUARIO#####################################################################################*/
+/*################################################FIN CONTROL USUARIO#####################################################################################*/
 /*###############################################################################################################################################*/
-/*###########################################################METODO PARA ENVIAR JSON####################################################################################*/
+/*################################################METODO PARA ENVIAR JSON####################################################################################*/
 
     public function enviar($parametros){
 

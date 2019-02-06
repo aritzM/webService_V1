@@ -1,0 +1,21 @@
+
+
+<table class="text-center table table-bordered">
+    <thead>
+    <tr>
+        <td>Imagen Skin</td>
+        <td>Nombre Skin</td>
+        <td>Precio</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for skin in skins %}
+
+        <tr>
+            <td class="active"><img src={{ skin.ruta }} height='250px'/></td>
+            <td class="active text-center"t>{{ skin.nombreSkin }}</td>
+            <td class="info text-center">{{ skin.precio }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

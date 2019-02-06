@@ -7,6 +7,7 @@
  */
 
 namespace App\Controller;
+use App\Entity\AlmiSkinsJuegoAlmiUsuariosJuegoRel;
 use App\Entity\AlmiUsuariosJuego;
 use App\Entity\FosUser;
 use App\Entity\AlmiSkinsJuego;
@@ -22,7 +23,19 @@ class WWWController extends AbstractController
      * @Route("/index", name="index")
      */
     public function indexLogin(){
-        $parametros = array('error' => null);
+
+        $entity_manager = $this->getDoctrine()->getManager();
+
+        $skins_juego = $entity_manager->getRepository(AlmiSkinsJuego::class)->findAll();
+
+        foreach ($skins_juego as $skin_juego){
+
+            $skins[] = array('id' => $skin_juego->getId(), 'nombreSkin' => $skin_juego->getNombreskin(), 'precio' => $skin_juego->getPrecio(), 'ruta' => $skin_juego->getRuta());
+
+        }
+
+        $parametros['skins'] = $skins;
+        $parametros['error'] = null;
         return $this->render('Tienda/index.html.twig', $parametros);
     }
 
@@ -40,13 +53,17 @@ class WWWController extends AbstractController
     public function ver(){
 
         $entity_manager = $this->getDoctrine()->getManager();
-        $parametros = array('skins' => null);
+        $parametros = null;
 
-        $info_skin = $entity_manager->getRepository(AlmiSkinsJuego::class)->findAll();
+        $comprados = $entity_manager->getRepository(AlmiSkinsJuegoAlmiUsuariosJuegoRel::class)->findAll();
+        $skins = null;
+        foreach ($comprados as $comprado){
 
-        foreach ($info_skin as $dato){
+            if ($comprado->getAlmiUsuariosJuego()->getId() == $this->get('session')->get('userID')){
 
-            $skins[] = array('id'=>$dato->getId(), 'nombreSkin' => $dato->getNombreSkin(), 'precio' => $dato->getPrecio(), 'ruta' => $dato->getRuta());
+                $skins[] = array('id'=>$comprado->getAlmiSkinsJuego()->getId(), 'nombreSkin' => $comprado->getAlmiSkinsJuego()->getNombreSkin(), 'precio' => $comprado->getAlmiSkinsJuego()->getPrecio(), 'ruta' => $comprado->getAlmiSkinsJuego()->getRuta(), 'comprado' => true);
+
+            }
 
         }
 
@@ -57,10 +74,63 @@ class WWWController extends AbstractController
     }
 
     /**
-     * @Route("/comprar", name="comprar")
+     * @Route("/comprar/{idSkin}/{idUser}", name="comprar")
      */
-    public function comprar(){
+    public function comprar($idSkin, $idUser){
 
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $compra = new AlmiSkinsJuegoAlmiUsuariosJuegoRel();
+
+        $skin = $entityManager->getRepository(AlmiSkinsJuego::class)->find($idSkin);
+
+        $user = $entityManager->getRepository(AlmiUsuariosJuego::class)->find($idUser);
+
+        $dinero_user = $user->getDinero();
+        $dinero_skin = $skin->getPrecio();
+
+        if ($dinero_skin>$dinero_user){
+            $parametros['compra'] = 'No tienes suficiente dinero';
+        }
+
+        if ($dinero_skin<$dinero_user){
+
+            $compra->setAlmiUsuariosJuego($user);
+            $compra->setAlmiSkinsJuego($skin);
+
+            $entity_Manager = $this->getDoctrine()->getManager();
+            $entity_Manager->persist($compra);
+            $entity_Manager->flush();
+
+            $total = $dinero_user - $dinero_skin;
+            $user->setDinero($total);
+
+            $entity_Manager->persist($user);
+            $entity_Manager->flush();
+
+            $this->get('session')->set('dinero', $total);
+
+            $parametros['compra'] = 'successfull';
+
+        }
+
+        $comprados = $entityManager->getRepository(AlmiSkinsJuegoAlmiUsuariosJuegoRel::class)->findAll();
+        $skins = null;
+
+        foreach ($comprados as $comprado){
+
+            if ($comprado->getAlmiUsuariosJuego()->getId() == $this->get('session')->get('userID')){
+
+                $skins[] = array('id'=>$comprado->getAlmiSkinsJuego()->getId(), 'nombreSkin' => $comprado->getAlmiSkinsJuego()->getNombreSkin(), 'precio' => $comprado->getAlmiSkinsJuego()->getPrecio(), 'ruta' => $comprado->getAlmiSkinsJuego()->getRuta(), 'comprado' => true);
+
+            }
+
+
+        }
+
+        $parametros['skins'] = $skins;
+
+        return $this->render('Tienda/Skins/skins.html.twig', $parametros);
     }
 
     /**
@@ -113,14 +183,35 @@ class WWWController extends AbstractController
 
                         if($plain_password == $item->getPassword()){
 
-                            $parametros = array('userID' => $item->getId(), 'error' => null);
+                            $skins_juego = $entity_manager->getRepository(AlmiSkinsJuego::class)->findAll();
+
+                            foreach ($skins_juego as $skin_juego){
+
+                                $skins[] = array('id' => $skin_juego->getId(), 'nombreSkin' => $skin_juego->getNombreskin(), 'precio' => $skin_juego->getPrecio(), 'ruta' => $skin_juego->getRuta());
+
+                            }
+
                             //$this->USER_ID = $item->getId();
 
-                            $session = new Session();
-                            $session->set('userID', $item->getId());
-                            $session->set('nombre', $item->getUsername());
-                            $session->set('email', $item->getEmail());
-                            $session->start();
+                            $users_juego = $entity_manager->getRepository(AlmiUsuariosJuego::class)->findAll();
+
+                            foreach ($users_juego as $user_juego){
+
+                                if ($user_juego->getFosuser() == $item->getId()){
+
+                                    $session = new Session();
+                                    $session->set('userID', $item->getId());
+                                    $session->set('nombre', $item->getUsername());
+                                    $session->set('email', $item->getEmail());
+                                    $session->set('dinero', $user_juego->getDinero());
+                                    $session->set('victoria', $user_juego->getVictoria());
+                                    $session->set('derrota', $user_juego->getDerrota());
+                                    $session->start();
+                                }
+                            }
+
+                            $parametros['skins'] = $skins;
+                            $parametros['error'] = null;
 
                             return $this->render('Tienda/index.html.twig', $parametros);
 

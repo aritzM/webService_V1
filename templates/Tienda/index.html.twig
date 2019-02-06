@@ -10,7 +10,14 @@
     {% if error %}
         <h3>Error: {{ error }}</h3>
     {% endif %}
+    <h1>Victorias: {{ app.session.get('victoria') }}</h1>
+    <h1>Derrota: {{ app.session.get('derrota') }}</h1>
 
+    {% if skins is defined%}
+
+        {% include 'Tienda/Skins/Tablas/_tabla_ver.html.twig' %}
+
+    {% endif %}
 {% endblock %}
 {% block footer %}
     <footer>Tienda Figther</footer>

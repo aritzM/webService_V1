@@ -7,16 +7,18 @@
 
     {% include 'Tienda/Menu/_menu.html.twig' %}
 
-    {% if skins %}
-        {% include 'Tienda/Skins/Tablas/_tabla_ver.html.twig' %}
 
-
-
-    {% endif %}
 {% endblock %}
 {% block contenido %}
+    {% if compra is defined %}
+        <script>alert({{ compra }});</script>
+    {% endif %}
 
+    {% if skins is defined%}
 
+        {% include 'Tienda/Skins/Tablas/_tabla_editar.html.twig' %}
+
+    {% endif %}
     <!--<form method="post" action="{ path('config') }}">
         <label>Email</label><input type="email" placeholder="example@example.com" name="email"><br/>
         <label>Nombre Usuario</label><input type="text" placeholder="Nombre Usuario" name="nombre"><br/>
