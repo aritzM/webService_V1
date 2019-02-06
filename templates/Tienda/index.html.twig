@@ -11,7 +11,7 @@
         <h3>Error: {{ error }}</h3>
     {% endif %}
     <h1>Victorias: {{ app.session.get('victoria') }}</h1>
-    <h1>Derrota: {{ app.session.get('derrota') }}</h1>
+    <h1 class="miRight2">Derrota: {{ app.session.get('derrota') }}</h1>
 
     {% if skins is defined%}
 
@@ -20,7 +20,7 @@
     {% endif %}
 {% endblock %}
 {% block footer %}
-    <footer>Tienda Figther</footer>
+    <footer>Tienda Fighter</footer>
 {% endblock %}
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

@@ -12,11 +12,15 @@
 {% block contenido %}
     {% if compra is defined %}
         {% if compra.tipo == 0 %}
+            <div class="alert2">
             {{ compra.mensaje }}
+            </div>
         {% endif %}
 
         {% if compra.tipo == 1 %}
+            <div class="alert">
             {{ compra.error }}
+            </div>
         {% endif %}
     {% endif %}
     {% if skins is defined%}
